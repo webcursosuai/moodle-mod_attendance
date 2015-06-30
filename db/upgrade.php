@@ -158,5 +158,29 @@ function xmldb_attendance_upgrade($oldversion=0) {
         upgrade_mod_savepoint(true, 2015040503, 'attendance');
     }
 
+    if ($oldversion < 2015063000) {
+
+        // Define field intro to be added to attendance.
+        $table = new xmldb_table('attendance');
+        $field = new xmldb_field('intro', XMLDB_TYPE_TEXT, null, null, null, null, null, 'name');
+
+        // Conditionally launch add field setnumber.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Define field introformat to be added to attendance.
+        $table = new xmldb_table('attendance');
+        $field = new xmldb_field('introformat', XMLDB_TYPE_INTEGER, '4', null, XMLDB_NOTNULL, null, '0', 'intro');
+
+        // Conditionally launch add field statusset.
+        if (!$dbman->field_exists($table, $field)) {
+            $dbman->add_field($table, $field);
+        }
+
+        // Attendance savepoint reached.
+        upgrade_mod_savepoint(true, 2015063000, 'attendance');
+    }
+
     return $result;
 }

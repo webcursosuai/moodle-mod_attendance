@@ -567,6 +567,10 @@ class attendance {
     /** @var float number (10, 5) unsigned, the maximum grade for attendance */
     public $grade;
 
+    public $intro;
+
+    public $introformat;
+
     /** current page parameters */
     public $pageparams;
 
