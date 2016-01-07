@@ -30,6 +30,7 @@ require_once $CFG->libdir . '/accesslib.php';
 global $CFG, $DB, $OUTPUT, $PAGE, $USER;
 
 $action = required_param ( 'action', PARAM_ALPHA );
+$time = optional_param ( 'time', PARAM_ALPHA );
 $username = required_param ( 'username', PARAM_RAW_TRIMMED );
 $password = required_param ( 'password', PARAM_RAW_TRIMMED );
 
@@ -76,14 +77,15 @@ switch ($action) {
 									INNER JOIN mdl_attendance AS att ON (att.id= sess.attendanceid )
 									INNER JOIN mdl_course AS course ON ( course.id = att.course )
 									WHERE users.id = ? ) AS taken)
-							
+							AND FROM_UNIXTIME(sess.sessdate) >= ?
 							ORDER BY FROM_UNIXTIME(sess.sessdate) ASC
 				";
 		//missing DateADD in case you want to take attendance within a margin of time
 		
 		$sessions = $DB->get_recordset_sql ( $sqlgetsessions, array (
 				$user->id,
-				$user->id 
+				$user->id,
+				$time
 		) );
 		//var_dump($sessions);
 		if (! $sessions) {
