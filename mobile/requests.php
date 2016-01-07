@@ -76,7 +76,7 @@ switch ($action) {
 									INNER JOIN mdl_attendance AS att ON (att.id= sess.attendanceid )
 									INNER JOIN mdl_course AS course ON ( course.id = att.course )
 									WHERE users.id = ? ) AS taken)
-							AND FROM_UNIXTIME(sess.sessdate) >= NOW()
+							
 							ORDER BY FROM_UNIXTIME(sess.sessdate) ASC
 				";
 		//missing DateADD in case you want to take attendance within a margin of time
