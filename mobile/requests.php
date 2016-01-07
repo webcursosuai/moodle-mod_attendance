@@ -30,7 +30,7 @@ require_once $CFG->libdir . '/accesslib.php';
 global $CFG, $DB, $OUTPUT, $PAGE, $USER;
 
 $action = required_param ( 'action', PARAM_ALPHA );
-$time = optional_param ( 'time', PARAM_RAW_TRIMMED );
+$time = optional_param ( 'time', null , PARAM_RAW_TRIMMED );
 $username = required_param ( 'username', PARAM_RAW_TRIMMED );
 $password = required_param ( 'password', PARAM_RAW_TRIMMED );
 
