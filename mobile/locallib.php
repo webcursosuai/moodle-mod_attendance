@@ -127,7 +127,22 @@ function attendance_create_qr_image($qrstring,$attendanceid)
     mkdir($path, 0777, true);
 	}
 	$fs = get_file_storage();
-	$file =$fs->create_file_from_pathname(array(),$path."/".$img);
+	
+	$file_record = array(
+			'contextid' => $context->id,
+			'component' => 'mod_attendance',
+			'filearea' => 'session',
+			'itemid' => null,
+			'filepath' => '/',
+			'filename' => $filename,
+			'timecreated' => $time,
+			'timemodified' => time(),
+			'userid' => null,
+			'author' => null,
+			'license' => 'allrightsreserved'
+	);
+	
+	$file =$fs->create_file_from_pathname($file_record,$path."/".$img);
 	
 	return 	true;
 }
