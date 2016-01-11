@@ -123,8 +123,8 @@ function attendance_create_qr_image($qrstring,$attendanceid)
 	QRcode::png($qrstring, $img);
 	
 	$path= $CFG -> dataroot. "/temp/attendance/" . $attendanceid;
-	if (! file_exists($path)) {
-		mkdir($path);
+	if (!file_exists($path)) {
+    mkdir($path, 0777, true);
 	}
 	$fs = get_file_storage();
 	$file =$fs->create_file_from_pathname(array(),$path."/".$img);
