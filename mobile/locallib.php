@@ -110,5 +110,33 @@ function attendance_json_error($message, $values = null)
  * @param unknown $emarking
  * @return boolean
  */
+function attendance_create_qr_image($qrstring,$attendanceid)
+{
+	global $CFG;
+	require_once ($CFG->dirroot . '/mod/attendance/lib/phpqrcode/phpqrcode.php');
+
+	$h = random_string(15);
+	$time = time();
+	$img = "/qr" . $h . "_" .  $time . ".png";
+	
+	// The image is generated based on the string
+	QRcode::png($qrstring, $img);
+	
+	$path= $CFG -> dataroot. "/temp/attendance/" . $attendanceid;
+	if (! file_exists($path)) {
+		mkdir($path);
+	}
+	$fs = get_file_storage();
+	$file =$fs->create_file_from_pathname(array(),$path."/".$img);
+	
+	return 	$img;
+}
+/**
+ * Creates a QR image based on a string
+ * 
+ * @param unknown $qrstring
+ * @param unknown $attendanceid
+ * @return multitype:string
+ */
 
 
