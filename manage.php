@@ -92,4 +92,7 @@ echo $output->render($filtercontrols);
 echo $output->render($sesstable);
 
 echo $output->footer();
-
+?>
+<script>
+$(".generalbox table td tr:nth-child(5)").append("</td>QR Code<td>");
+</script>
