@@ -129,16 +129,16 @@ function attendance_create_qr_image($qrstring,$attendanceid)
 	$fs = get_file_storage();
 	
 	$file_record = array(
-			'contextid' => $context->id,
+			'contextid' => context_module::instance($attendanceid),
 			'component' => 'mod_attendance',
 			'filearea' => 'session',
 			'itemid' => null,
 			'filepath' => '/',
-			'filename' => $img,
-			'timecreated' => "/qr" . $h . "_" .  $time,
+			'filename' => "/qr" . $h . "_" .  $time,
+			'timecreated' => $time,
 			'timemodified' => time(),
-			'userid' => null,
-			'author' => null,
+			'userid' => 'attendance',
+			'author' => 'attendance',
 			'license' => 'allrightsreserved'
 	);
 	
