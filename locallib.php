@@ -747,6 +747,8 @@ class attendance {
             $sess->studentscanmark = 0;
             $event->add_record_snapshot('attendance_sessions', $sess);
             $event->trigger();
+            include "mobile/locallib.php";
+            attendance_create_qr_image($sess->id."-".$sess->sessdate,$sess->attendanceid);
         }
     }
 

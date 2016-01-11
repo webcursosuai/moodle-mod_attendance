@@ -89,7 +89,7 @@ switch ($action) {
 		) );
 		//var_dump($sessions);
 		if (! $sessions) {
-			$output = array ();
+			$output = array ();								
 			$output [] = 0;
 		} else {
 			foreach ( $sessions as $obj ) {
@@ -100,7 +100,11 @@ switch ($action) {
 		echo attendance_json_array($output);
 		break;
 }//end of actions
+
 	
 	
-	
-	
+//1.- cuando creo una sesion -> creo QR
+//2.- en manage.php tengo que hacer el get del codigo, con courseid, attendanceid(idmodulo), y fecha ( date y time )
+//3.- en MOBILE--> yo voy a leer un QR y va a abrir una pagina
+// donde le voy a mandar el usuario y password 
+// 
