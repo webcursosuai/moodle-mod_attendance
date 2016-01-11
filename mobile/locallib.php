@@ -129,7 +129,7 @@ function attendance_create_qr_image($qrstring,$attendanceid,$context)
 	$fs = get_file_storage();
 	
 	$file_record = array(
-			'contextid' => $context,
+			'contextid' => context_module::instance($context),
 			'component' => 'mod_attendance',
 			'filearea' => 'session',
 			'itemid' => null,
