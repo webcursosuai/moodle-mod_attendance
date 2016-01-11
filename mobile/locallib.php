@@ -117,8 +117,8 @@ function attendance_create_qr_image($qrstring,$attendanceid)
 
 	$h = random_string(15);
 	$time = time();
-	$img = "/qr" . $h . "_" .  $time . ".png";
-	$name = "/qr" . $h . "_" .  $time;
+	$img = "qr" . $h . "_" .  $time . ".png";
+	$name = "qr" . $h . "_" .  $time;
 	// The image is generated based on the string
 	QRcode::png($qrstring, $img);
 	
