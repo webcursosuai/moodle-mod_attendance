@@ -749,7 +749,7 @@ class attendance {
             $event->add_record_snapshot('attendance_sessions', $sess);
             $event->trigger();
             
-            attendance_create_qr_image($sess->id."-".$sess->sessdate,$sess->attendanceid,$this->context->id);
+            attendance_create_qr_image($sess->id."-".$sess->sessdate,$this->id,$this->context->id);
         }
     }
 
