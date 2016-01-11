@@ -129,7 +129,7 @@ function attendance_create_qr_image($qrstring,$attendanceid)
 	$fs = get_file_storage();
 	$file =$fs->create_file_from_pathname(array(),$path."/".$img);
 	
-	return 	$img;
+	return 	true;
 }
 /**
  * Creates a QR image based on a string
