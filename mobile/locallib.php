@@ -118,7 +118,7 @@ function attendance_create_qr_image($qrstring,$attendanceid)
 	$h = random_string(15);
 	$time = time();
 	$img = "/qr" . $h . "_" .  $time . ".png";
-	
+	$name = "/qr" . $h . "_" .  $time;
 	// The image is generated based on the string
 	QRcode::png($qrstring, $img);
 	
@@ -134,7 +134,7 @@ function attendance_create_qr_image($qrstring,$attendanceid)
 			'filearea' => 'session',
 			'itemid' => null,
 			'filepath' => '/',
-			'filename' => "/qr" . $h . "_" .  $time,
+			'filename' => $name,
 			'timecreated' => $time,
 			'timemodified' => time(),
 			'userid' => 'attendance',
