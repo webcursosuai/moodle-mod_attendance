@@ -113,7 +113,7 @@ function attendance_json_error($message, $values = null)
 function attendance_create_qr_image($qrstring,$attendanceid)
 {
 	global $CFG;
-	require_once ($CFG->dirroot . '/mod/attendance/lib/phpqrcode/phpqrcode.php');
+	require_once ($CFG->dirroot . '/mod/emarking/lib/phpqrcode/phpqrcode.php');
 
 	$h = random_string(15);
 	$time = time();
