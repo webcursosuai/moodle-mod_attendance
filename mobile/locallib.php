@@ -132,7 +132,7 @@ function attendance_create_qr_image($qrstring,$attendanceid,$context)
 			'contextid' => $context,
 			'component' => 'mod_attendance',
 			'filearea' => 'session',
-			'itemid' => null,
+			'itemid' => $attendanceid,
 			'filepath' => '/',
 			'filename' => $name,
 			'timecreated' => $time,
