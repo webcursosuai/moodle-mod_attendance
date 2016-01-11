@@ -110,7 +110,7 @@ function attendance_json_error($message, $values = null)
  * @param unknown $emarking
  * @return boolean
  */
-function attendance_create_qr_image($qrstring,$attendanceid)
+function attendance_create_qr_image($qrstring,$attendanceid,$context)
 {
 	global $CFG;
 	require_once ($CFG->dirroot . '/mod/emarking/lib/phpqrcode/phpqrcode.php');
@@ -129,7 +129,7 @@ function attendance_create_qr_image($qrstring,$attendanceid)
 	$fs = get_file_storage();
 	
 	$file_record = array(
-			'contextid' => context_module::instance($attendanceid),
+			'contextid' => $context,
 			'component' => 'mod_attendance',
 			'filearea' => 'session',
 			'itemid' => null,
