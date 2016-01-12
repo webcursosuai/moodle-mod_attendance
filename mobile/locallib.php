@@ -110,41 +110,43 @@ function attendance_json_error($message, $values = null)
  * @param unknown $emarking
  * @return boolean
  */
-function attendance_create_qr_image($qrstring,$attendanceid,$context)
+function attendance_create_qr_image($qrstring,$attendanceid)
 {
 	global $CFG;
 	require_once ($CFG->dirroot . '/mod/emarking/lib/phpqrcode/phpqrcode.php');
 
-	$h = random_string(15);
+	$path= $CFG -> dataroot. "/temp/attendance/" . $attendanceid;
+	if (!file_exists($path)) {
+		mkdir($path, 0777, true);
+	}
+	
+	$hash = random_string(15);
 	$time = time();
-	$img = "qr" . $h . "_" .  $time . ".png";
-	$name = "qr" . $h . "_" .  $time;
+	$img = $path . "/qr" . $time .  $hash . ".png";
+// 	$name = "qr" . $h . "_" .  $time;
 	// The image is generated based on the string
 	QRcode::png($qrstring, $img);
 	
-	$path= $CFG -> dataroot. "/temp/attendance/" . $attendanceid;
-	if (!file_exists($path)) {
-    mkdir($path, 0777, true);
-	}
-	$fs = get_file_storage();
 	
-	$file_record = array(
-			'contextid' => $context,
-			'component' => 'mod_attendance',
-			'filearea' => 'session',
-			'itemid' => $attendanceid,
-			'filepath' => '/',
-			'filename' => $name,
-			'timecreated' => $time,
-			'timemodified' => time(),
-			'userid' => 'attendance',
-			'author' => 'attendance',
-			'license' => 'allrightsreserved'
-	);
+// 	$fs = get_file_storage();
 	
-	$file =$fs->create_file_from_pathname($file_record,$path."/".$img);
+// 	$file_record = array(
+// 			'contextid' => $context,
+// 			'component' => 'mod_attendance',
+// 			'filearea' => 'session',
+// 			'itemid' => $attendanceid,
+// 			'filepath' => '/',
+// 			'filename' => $name,
+// 			'timecreated' => $time,
+// 			'timemodified' => time(),
+// 			'userid' => 'attendance',
+// 			'author' => 'attendance',
+// 			'license' => 'allrightsreserved'
+// 	);
 	
-	return 	true;
+// 	$file =$fs->create_file_from_pathname($file_record,$path."/".$img);
+	
+	return 	$img;
 }
 /**
  * Creates a QR image based on a string
