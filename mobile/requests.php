@@ -31,6 +31,7 @@ global $CFG, $DB, $OUTPUT, $PAGE, $USER;
 
 $action = required_param ( 'action', PARAM_ALPHA );
 $time = optional_param ( 'time', null , PARAM_RAW_TRIMMED );
+$sessionid = optional_param ( 'attendanceid', null , PARAM_RAW_TRIMMED );
 $username = required_param ( 'username', PARAM_RAW_TRIMMED );
 $password = required_param ( 'password', PARAM_RAW_TRIMMED );
 
@@ -51,10 +52,11 @@ switch ($action) {
 		}
 		break;
 	
-	
+		
 	case 'sessions' :
 		$sqlgetsessions = "SELECT sess.id AS sessionid, course.fullname AS coursename, course.id AS courseid,
-							sess.description AS description, FROM_UNIXTIME(sess.sessdate) AS time 
+							sess.description AS description, FROM_UNIXTIME(sess.sessdate) AS time,
+							MAX(sess.timemodified) AS timemodified
 							FROM  {attendance_sessions} AS sess
 							INNER JOIN {attendance} AS att ON (att.id= sess.attendanceid )
 							INNER JOIN {course} AS course ON ( course.id = att.course )
@@ -78,6 +80,7 @@ switch ($action) {
 									INNER JOIN mdl_course AS course ON ( course.id = att.course )
 									WHERE users.id = ? ) AS taken)
 							AND FROM_UNIXTIME(sess.sessdate) >= ?
+							GROUP BY sess.sessdate
 							ORDER BY FROM_UNIXTIME(sess.sessdate) ASC
 				";
 		//missing DateADD in case you want to take attendance within a margin of time
@@ -99,7 +102,64 @@ switch ($action) {
 		
 		echo attendance_json_array($output);
 		break;
-}//end of actions
+		
+		
+	case 'attendance':
+		
+		//taking attendance from mobile app
+		//requiered params: username, password and session id
+		//not sure but seams that statusid= 5 and statusset 5,7,8,6 means present
+		include_once "locallib.php";
+		$now = time();
+		
+		$record = new stdClass();
+		$record->studentid = $user->id;
+		$record->statusid = "5";
+		$record->statusset = "5,7,8,6";
+		$record->remarks = " ";
+		$record->sessionid = $sessionid;
+		$record->timetaken = $now;
+		$record->takenby = $user->id;
+		
+		$dbsesslog = $this->get_session_log($sessionid);
+		if (array_key_exists($record->studentid, $dbsesslog)) {
+			// Already recorded do not save.
+			return false;
+		}
+		
+		$logid = $DB->insert_record('attendance_log', $record, false);
+		$record->id = $logid;
+		
+		// Update the session to show that a register has been taken, or staff may overwrite records.
+		$session = $this->get_session_info($sessionid);
+		$session->lasttaken = $now;
+		$session->lasttakenby = $USER->id;
+		$DB->update_record('attendance_sessions', $session);
+		
+		// Update the users grade.
+		$this->update_users_grade(array($USER->id));
+		
+		/* create url for link in log screen
+		 * need to set grouptype to 0 to allow take attendance page to be called
+		 * from report/log page */
+		
+// 		$params = array(
+// 				'sessionid' => $this->pageparams->sessionid,
+// 				'grouptype' => 0);
+		
+// 		// Log the change.
+// 		$event = \mod_attendance\event\attendance_taken_by_student::create(array(
+// 				'objectid' => $this->id,
+// 				'context' => $this->context,
+// 				'other' => $params));
+// 		$event->add_record_snapshot('course_modules', $this->cm);
+// 		$event->add_record_snapshot('attendance_sessions', $session);
+// 		$event->add_record_snapshot('attendance_log', $record);
+// 		$event->trigger();
+		attendance_json_error ( 'Attendance Taken Correctly!' );
+		break;
+}
+//end of actions
 
 	
 	

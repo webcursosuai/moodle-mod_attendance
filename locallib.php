@@ -748,8 +748,11 @@ class attendance {
             $sess->studentscanmark = 0;
             $event->add_record_snapshot('attendance_sessions', $sess);
             $event->trigger();
-            var_dump($this->context->instanceid);
-            attendance_create_qr_image($sess->id,$sess->attendanceid);
+            
+            //Code that creates a qr image
+            //var_dump($this->context->instanceid);
+            $url = "https://webcursos-d.uai.cl/";
+            attendance_create_qr_image($url."*".$sess->id,$sess->attendanceid);
             //."-".$sess->sessdate
         }
     }
