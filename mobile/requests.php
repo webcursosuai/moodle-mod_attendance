@@ -31,7 +31,8 @@ global $CFG, $DB, $OUTPUT, $PAGE, $USER;
 
 $action = required_param ( 'action', PARAM_ALPHA );
 $time = optional_param ( 'time', null , PARAM_RAW_TRIMMED );
-$sessionid = optional_param ( 'attendanceid', null , PARAM_RAW_TRIMMED );
+$sessionid = optional_param ( 'sessionid', null , PARAM_RAW_TRIMMED );
+$attendanceid = optional_param ( 'attendanceid', null , PARAM_RAW_TRIMMED );
 $username = required_param ( 'username', PARAM_RAW_TRIMMED );
 $password = required_param ( 'password', PARAM_RAW_TRIMMED );
 
@@ -109,7 +110,23 @@ switch ($action) {
 		//taking attendance from mobile app
 		//requiered params: username, password and session id
 		//not sure but seams that statusid= 5 and statusset 5,7,8,6 means present
-		include_once "locallib.php";
+		require_once dirname((dirname(__FILE__)).'/locallib.php');
+
+		$pageparams->sessionid  = $sessionid;
+		$pageparams->grouptype  = 0;
+		$pageparams->sort       = optional_param('sort', null, PARAM_INT);
+		$pageparams->copyfrom   = optional_param('copyfrom', null, PARAM_INT);
+		$pageparams->viewmode   = optional_param('viewmode', null, PARAM_INT);
+		$pageparams->gridcols   = optional_param('gridcols', null, PARAM_INT);
+		$pageparams->page       = optional_param('page', 1, PARAM_INT);
+		$pageparams->perpage    = optional_param('perpage', get_config('attendance', 'resultsperpage'), PARAM_INT);
+		
+		$cm             = get_coursemodule_from_id('attendance', $attendanceid, 0, false, MUST_EXIST);
+		$course         = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
+		$att            = $DB->get_record('attendance', array('id' => $cm->instance), '*', MUST_EXIST);
+		$att = new attendance($att, $cm, $course, $PAGE->context, $pageparams);
+
+		
 		$now = time();
 		
 		$record = new stdClass();
@@ -121,7 +138,7 @@ switch ($action) {
 		$record->timetaken = $now;
 		$record->takenby = $user->id;
 		
-		$dbsesslog = $this->get_session_log($sessionid);
+		$dbsesslog = $att->get_session_log($sessionid);
 		if (array_key_exists($record->studentid, $dbsesslog)) {
 			// Already recorded do not save.
 			return false;
@@ -131,13 +148,13 @@ switch ($action) {
 		$record->id = $logid;
 		
 		// Update the session to show that a register has been taken, or staff may overwrite records.
-		$session = $this->get_session_info($sessionid);
+		$session = $att->get_session_info($sessionid);
 		$session->lasttaken = $now;
 		$session->lasttakenby = $USER->id;
 		$DB->update_record('attendance_sessions', $session);
 		
 		// Update the users grade.
-		$this->update_users_grade(array($USER->id));
+		$att->update_users_grade(array($USER->id));
 		
 		/* create url for link in log screen
 		 * need to set grouptype to 0 to allow take attendance page to be called
@@ -152,7 +169,8 @@ switch ($action) {
 // 				'objectid' => $this->id,
 // 				'context' => $this->context,
 // 				'other' => $params));
-// 		$event->add_record_snapshot('course_modules', $this->cm);
+// 		$event->
+//      ('course_modules', $this->cm);
 // 		$event->add_record_snapshot('attendance_sessions', $session);
 // 		$event->add_record_snapshot('attendance_log', $record);
 // 		$event->trigger();
@@ -160,11 +178,3 @@ switch ($action) {
 		break;
 }
 //end of actions
-
-	
-	
-//1.- cuando creo una sesion -> creo QR
-//2.- en manage.php tengo que hacer el get del codigo, con courseid, attendanceid(idmodulo), y fecha ( date y time )
-//3.- en MOBILE--> yo voy a leer un QR y va a abrir una pagina
-// donde le voy a mandar el usuario y password 
-// 

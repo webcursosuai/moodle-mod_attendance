@@ -135,38 +135,4 @@ function attendance_create_qr_image($qrstring,$attendanceid)
  * @return multitype:string
  */
 
- function get_session_log($sessionid) {
-	global $DB;
-
-	return $DB->get_records('attendance_log', array('sessionid' => $sessionid), '', 'studentid,statusid,remarks,id');
-}
-
-function get_session_info($sessionid) {
-	global $DB;
-
-	if (!array_key_exists($sessionid, $this->sessioninfo)) {
-		$this->sessioninfo[$sessionid] = $DB->get_record('attendance_sessions', array('id' => $sessionid));
-	}
-	if (empty($this->sessioninfo[$sessionid]->description)) {
-		$this->sessioninfo[$sessionid]->description = get_string('nodescription', 'attendance');
-	} else {
-		$this->sessioninfo[$sessionid]->description = file_rewrite_pluginfile_urls($this->sessioninfo[$sessionid]->description,
-				'pluginfile.php', $this->context->id, 'mod_attendance', 'session', $this->sessioninfo[$sessionid]->id);
-	}
-	return $this->sessioninfo[$sessionid];
-}
-
-function update_users_grade($userids) {
-	$grades = array();
-
-	foreach ($userids as $userid) {
-		$grades[$userid] = new stdClass();
-		$grades[$userid]->userid = $userid;
-		$grades[$userid]->rawgrade = att_calc_user_grade_fraction($this->get_user_grade($userid),
-				$this->get_user_max_grade($userid)) * $this->grade;
-	}
-
-	return grade_update('mod/attendance', $this->course->id, 'mod', 'attendance',
-			$this->id, 0, $grades);
-}
 
