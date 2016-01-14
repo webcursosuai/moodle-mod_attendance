@@ -104,7 +104,7 @@ $('table').find('tr').each(function(){
 
 function showModal(title, body) {
 	var title = "Edit QR Code Print Page";
-	var body = "cuerpo";
+	var body = "Course: <?php echo $course->fullname; ?> " ;
     var html = '<div class="modal fade" tabindex="-1" role="dialog">' +
     '<div class="modal-dialog">' +
     '<div class="modal-content">' +
@@ -117,7 +117,7 @@ function showModal(title, body) {
     '</div>' +
     '<div class="modal-footer">' +
     '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
-    '<button type="button" class="btn btn-primary">Save changes</button>' +
+    '<button type="button" class="btn btn-primary">Print QR</button>' +
     '</div>' +
     '</div>' +
     '</div>' +
