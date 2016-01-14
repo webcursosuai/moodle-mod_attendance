@@ -124,7 +124,9 @@ switch ($action) {
 		$cm             = get_coursemodule_from_id('attendance', $attendanceid, 0, false, MUST_EXIST);
 		$course         = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
 		$att            = $DB->get_record('attendance', array('id' => $cm->instance), '*', MUST_EXIST);
-		$att = new attendance($att, $cm, $course, $PAGE->context, $pageparams);
+		$context = context_system::instance();
+		
+		$att = new attendance($att, $cm, $course, $context, $pageparams);
 
 		
 		$now = time();

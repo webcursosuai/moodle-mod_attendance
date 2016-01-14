@@ -751,7 +751,7 @@ class attendance {
             
             //Code that creates a qr image
             //var_dump($this->context->instanceid);
-            $url = "https://webcursos-d.uai.cl/";
+            $url = $CFG ->wwwroot;
             attendance_create_qr_image($url."*".$sess->id."*".$sess->attendanceid,$sess->attendanceid);
             //."-".$sess->sessdate
         }
