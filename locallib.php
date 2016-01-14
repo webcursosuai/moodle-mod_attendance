@@ -719,7 +719,7 @@ class attendance {
     }
 
     public function add_sessions($sessions) {
-        global $DB;
+        global $DB, $CFG;
         include "mobile/locallib.php";
         
         foreach ($sessions as $sess) {
