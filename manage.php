@@ -115,9 +115,9 @@ function showModal(title, body) {
     '<div class="modal-body">' +
     '<p>' + body + '</p>' +
     '</div>' +
-    '<div class="modal-footer">' +
-    '<center><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
+    '<div class="modal-footer">' + 
     '<button type="button" class="btn btn-primary">Save & Print</button></center>' +
+    '<center><button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
     '</div>' +
     '</div>' +
     '</div>' +
