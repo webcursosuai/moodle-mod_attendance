@@ -112,6 +112,7 @@ switch ($action) {
 		//not sure but seams that statusid= 5 and statusset 5,7,8,6 means present
 		require_once $CFG->dirroot . '/mod/attendance/locallib.php';
 
+		$pageparams = new stdClass();
 		$pageparams->sessionid  = $sessionid;
 		$pageparams->grouptype  = 0;
 		$pageparams->sort       = optional_param('sort', null, PARAM_INT);
