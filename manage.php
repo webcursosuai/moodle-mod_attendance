@@ -101,9 +101,10 @@ $('table').find('tr').each(function(){
 </script>
 
 <script>
-var title = "Edit QR Code Print Page";
-var body = "cuerpo";
+
 function showModal(title, body) {
+	var title = "Edit QR Code Print Page";
+	var body = "cuerpo";
     var html = '<div class="modal fade" tabindex="-1" role="dialog">' +
     '<div class="modal-dialog">' +
     '<div class="modal-content">' +
