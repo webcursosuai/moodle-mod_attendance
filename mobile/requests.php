@@ -110,7 +110,7 @@ switch ($action) {
 		//taking attendance from mobile app
 		//requiered params: username, password and session id
 		//not sure but seams that statusid= 5 and statusset 5,7,8,6 means present
-		require_once dirname((dirname(__FILE__)).'/locallib.php');
+		require_once dirname(dirname((dirname(__FILE__))).'/locallib.php');
 
 		$pageparams->sessionid  = $sessionid;
 		$pageparams->grouptype  = 0;
