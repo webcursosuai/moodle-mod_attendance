@@ -132,5 +132,5 @@ $( ".clickeable" ).click(function() {
 
     var modal = $(html);
     modal.modal("show");
-}
+});
 </script>
