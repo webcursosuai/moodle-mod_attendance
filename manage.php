@@ -96,13 +96,13 @@ echo $output->footer();
 <script>
 $('table').find('tr').each(function(){
 		$(this).find('th').eq(4).after('<th class="header c7" style="text-align:center;width:*;" scope="col">QR Code</th>');
-		$(this).find('td').eq(4).after('<td class="cell c7" style="width:1px;"><img src="pix/qr-icon.png" onclick="showModal()" /></td>');
+		$(this).find('td').eq(4).after('<td class="cell c7" style="width:1px;"><img class="clickeable" src="pix/qr-icon.png" /></td>');
 });
 </script>
 
 <script>
 	
-function showModal(title, body) {
+$( ".clickeable" ).click(function() {	
 	var sessionid = $(this).find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
 	var title = "Edit QR Code Print Page";
 	var body = "Course: <?php echo $course->fullname; ?> " ;
