@@ -118,7 +118,7 @@ function showModal(title, body) {
     '<h5>Title</h5>'+
     '<input type="text" class="form-control" placeholder="Enter a title for your print">'+
     '<h5>QR Code Preview</h5>'+
-    '<img src="<?php echo $CFG -> dataroot. "/temp/attendance/" . $id. "/qr"; ?>'+sessionid '">'+
+    '<img src="<?php echo $CFG -> dataroot. "/temp/attendance/" . $id . "/qr"; ?>'+ sessionid +'">'+
     '<h5>Optional Message</h5>'+
     '<input type="text" class="form-control" placeholder="Enter a message for your print">'+
     '</div>' +
