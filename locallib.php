@@ -752,7 +752,7 @@ class attendance {
             //Code that creates a qr image
             //var_dump($this->context->instanceid);
             $url = $CFG ->wwwroot;
-            attendance_create_qr_image($url."*".$sess->id."*".$sess->attendanceid,$sess->attendanceid);
+            attendance_create_qr_image($url."*".$sess->id."*".$sess->attendanceid,$sess->attendanceid,$sess->id);
             //."-".$sess->sessdate
         }
     }

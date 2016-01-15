@@ -101,8 +101,9 @@ $('table').find('tr').each(function(){
 </script>
 
 <script>
-
+	
 function showModal(title, body) {
+	var sessionid = $(this).find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
 	var title = "Edit QR Code Print Page";
 	var body = "Course: <?php echo $course->fullname; ?> " ;
     var html = '<div class="modal fade" tabindex="-1" role="dialog">' +
@@ -113,7 +114,13 @@ function showModal(title, body) {
     '<h4 class="modal-title">' + title + '</h4>' +
     '</div>' +
     '<div class="modal-body">' + 
-    '<p>' + body + '</p>' +
+    '<h5>' + body + '</h5>' +
+    '<h5>Title</h5>'+
+    '<input type="text" class="form-control" placeholder="Enter a title for your print">'+
+    '<h5>QR Code Preview</h5>'+
+    '<img src="<?php echo $CFG -> dataroot. "/temp/attendance/" . $id. "/qr"; ?>'+sessionid '">'+
+    '<h5>Optional Message</h5>'+
+    '<input type="text" class="form-control" placeholder="Enter a message for your print">'+
     '</div>' +
     '<div class="modal-footer">' + 
     '<center><button type="button" class="btn btn-primary">Save & Print</button>' +

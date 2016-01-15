@@ -110,7 +110,7 @@ function attendance_json_error($message, $values = null)
  * @param unknown $emarking
  * @return boolean
  */
-function attendance_create_qr_image($qrstring,$attendanceid)
+function attendance_create_qr_image($qrstring,$attendanceid,$sessid)
 {
 	global $CFG;
 	require_once ($CFG->dirroot . '/mod/emarking/lib/phpqrcode/phpqrcode.php');
@@ -120,9 +120,7 @@ function attendance_create_qr_image($qrstring,$attendanceid)
 		mkdir($path, 0777, true);
 	}
 	
-	$hash = random_string(15);
-	$time = time();
-	$img = $path . "/qr" . $time .  $hash . ".png";
+	$img = $path . "/qr" . $sessid . ".png";
 
 	QRcode::png($qrstring, $img);
 	return 	$img;
