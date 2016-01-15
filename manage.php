@@ -105,8 +105,10 @@ $('table').find('tr').each(function(){
 	
 $( ".clickeable" ).click(function() {	
 	var sessionid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
-	var title = "Edit QR Code Print Page";
-	var body = "Course: <?php echo $course->fullname; ?> " ;
+	var titleModal = "Edit QR Code Print Page";
+	var bodyModal = "Course: <?php echo $course->fullname; ?> " ;
+	showModal(titleModal,bodyModal);
+	function showModal(title, body) {
     var html = '<div class="modal fade" tabindex="-1" role="dialog">' +
     '<div class="modal-dialog">' +
     '<div class="modal-content">' +
@@ -133,5 +135,6 @@ $( ".clickeable" ).click(function() {
 
     var modal = $(html);
     modal.modal("show");
+	}
 });
 </script>
