@@ -115,7 +115,7 @@ function attendance_create_qr_image($qrstring,$attendanceid,$sessid)
 	global $CFG;
 	require_once ($CFG->dirroot . '/mod/emarking/lib/phpqrcode/phpqrcode.php');
 
-	$path= $CFG -> dataroot. "/temp/attendance/" . $attendanceid;
+	$path = $CFG->dirroot . '/mod/attendance/mobile/' . $attendanceid;
 	if (!file_exists($path)) {
 		mkdir($path, 0777, true);
 	}
