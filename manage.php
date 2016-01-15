@@ -104,7 +104,7 @@ $('table').find('tr').each(function(){
 <script>
 	
 $( ".clickeable" ).click(function() {	
-	var sessionid = $(this).find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
+	var sessionid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
 	var title = "Edit QR Code Print Page";
 	var body = "Course: <?php echo $course->fullname; ?> " ;
     var html = '<div class="modal fade" tabindex="-1" role="dialog">' +
