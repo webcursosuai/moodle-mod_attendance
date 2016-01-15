@@ -21,10 +21,8 @@
  * @copyright  2011 Artem Andreev <andreev.artem@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-?>
-   <script src="bootstrap/js/bootstrap.js"></script>
-   <link href='bootstrap/css/bootstrap.min.css' rel='stylesheet'>
-<?php
+
+$PAGE->requires->js('/bootstrap/js/bootstrap.js');
 require_once(dirname(__FILE__).'/../../config.php');
 require_once(dirname(__FILE__).'/locallib.php');
 
