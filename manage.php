@@ -133,7 +133,9 @@ $( ".clickeable" ).click(function() {
     '</div>' +
     '</div>' +
     '</div>';
-    html.modal("show");
+
+    var modal = $(html);
+    modal.modal("show");
 	
 });
 </script>
