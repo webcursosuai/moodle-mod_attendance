@@ -154,8 +154,8 @@ function showModal(title, body) {
     '</div>' +
     '</div>' +
     '</div>';
-    var modal = $(html);
-    modal.modal("show");
+    var modaltoshow = $(html);
+    modaltoshow.modal("show");
 }
 	
 });
