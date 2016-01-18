@@ -128,6 +128,6 @@ function showModal() {
     '</div>' +
     '</div>';
     var modaltoshow = $(html);
-    modaltoshow.modal("show");
+    modaltoshow.modal('toggle');
 }
 </script>
