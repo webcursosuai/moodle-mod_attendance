@@ -106,10 +106,37 @@ $('table').find('tr').each(function(){
 <script>
 	
 $( ".clickeable" ).click(function() {	
-	var sessionid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
-	var title = "Edit QR Code Print Page";
-	var body = "Course: <?php echo $course->fullname; ?> " ;
+// 	var sessionid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
+ 	var titles = "Edit QR Code Print Page";
+	var bodys = "Course: <?php echo $course->fullname; ?> " ;
 
+//     var html = '<div class="modal fade" tabindex="-1" role="dialog">' +
+//     '<div class="modal-dialog">' +
+//     '<div class="modal-content">' +
+//     '<div class="modal-header">' +
+//     '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+//     '<h4 class="modal-title">' + title + '</h4>' +
+//     '</div>' +
+//     '<div class="modal-body">' + 
+//     '<h5>' + body + '</h5>' +
+//     '<h5>Title</h5>'+
+//     '<input type="text" class="form-control" placeholder="Enter a title for your print">'+
+//     '<h5>QR Code Preview</h5>'+
+//     '<h5>Optional Message</h5>'+
+//     '<input type="text" class="form-control" placeholder="Enter a message for your print">'+
+//     '</div>' +
+//     '<div class="modal-footer">' + 
+//     '<center><button type="button" class="btn btn-primary">Save & Print</button>' +
+//     '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button></center>' +
+//     '</div>' +
+//     '</div>' +
+//     '</div>' +
+//     '</div>';
+
+//     var modal = $(html);
+//     modal.modal("show");
+showModal(titles, bodys);
+function showModal(title, body) {
     var html = '<div class="modal fade" tabindex="-1" role="dialog">' +
     '<div class="modal-dialog">' +
     '<div class="modal-content">' +
@@ -117,25 +144,19 @@ $( ".clickeable" ).click(function() {
     '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
     '<h4 class="modal-title">' + title + '</h4>' +
     '</div>' +
-    '<div class="modal-body">' + 
-    '<h5>' + body + '</h5>' +
-    '<h5>Title</h5>'+
-    '<input type="text" class="form-control" placeholder="Enter a title for your print">'+
-    '<h5>QR Code Preview</h5>'+
-   
-    '<h5>Optional Message</h5>'+
-    '<input type="text" class="form-control" placeholder="Enter a message for your print">'+
+    '<div class="modal-body">' +
+    '<p>' + body + '</p>' +
     '</div>' +
-    '<div class="modal-footer">' + 
-    '<center><button type="button" class="btn btn-primary">Save & Print</button>' +
-    '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button></center>' +
+    '<div class="modal-footer">' +
+    '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
+    '<button type="button" class="btn btn-primary">Save changes</button>' +
     '</div>' +
     '</div>' +
     '</div>' +
     '</div>';
-
     var modal = $(html);
     modal.modal("show");
+}
 	
 });
 </script>
