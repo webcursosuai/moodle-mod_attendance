@@ -108,8 +108,8 @@ $('table').find('tr').each(function(){
 
 
 function showModal() {
- 	var titles = "Edit QR Code Print Page";
-	var bodys = "Course: <?php echo $course->fullname; ?> " ;
+ 	var title = "Edit QR Code Print Page";
+	var body = "Course: <?php echo $course->fullname; ?> " ;
 	var html = '<div class="modal fade" tabindex="-1" role="dialog">' +
     '<div class="modal-dialog">' +
     '<div class="modal-content">' +
