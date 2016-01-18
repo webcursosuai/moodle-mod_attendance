@@ -25,8 +25,9 @@
 
 require_once(dirname(__FILE__).'/../../config.php');
 require_once(dirname(__FILE__).'/locallib.php');
-$PAGE->requires->js('mod/attendance/bootstrap/js/bootstrap.js');
-$PAGE->requires -> jquery();
+$PAGE->requires->jquery();
+$PAGE->requires->jquery_plugin('ui');
+$PAGE->requires->jquery_plugin('ui-css');
 $pageparams = new att_manage_page_params();
 
 $id                         = required_param('id', PARAM_INT);
