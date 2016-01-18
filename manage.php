@@ -107,10 +107,9 @@ $('table').find('tr').each(function(){
 	
 $( ".clickeable" ).click(function() {	
 	var sessionid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
-	var titleModal = "Edit QR Code Print Page";
-	var bodyModal = "Course: <?php echo $course->fullname; ?> " ;
-	showModal(titleModal,bodyModal);
-	function showModal(title, body) {
+	var title = "Edit QR Code Print Page";
+	var body = "Course: <?php echo $course->fullname; ?> " ;
+
     var html = '<div class="modal fade" tabindex="-1" role="dialog">' +
     '<div class="modal-dialog">' +
     '<div class="modal-content">' +
@@ -123,7 +122,7 @@ $( ".clickeable" ).click(function() {
     '<h5>Title</h5>'+
     '<input type="text" class="form-control" placeholder="Enter a title for your print">'+
     '<h5>QR Code Preview</h5>'+
-   
+    '<img src="<?php echo $CFG -> dataroot. "/temp/attendance/" . $att->id . "/qr"; ?>'+ sessionid +'.png">'+
     '<h5>Optional Message</h5>'+
     '<input type="text" class="form-control" placeholder="Enter a message for your print">'+
     '</div>' +
@@ -134,9 +133,7 @@ $( ".clickeable" ).click(function() {
     '</div>' +
     '</div>' +
     '</div>';
-
-    var modal = $(html);
-    modal.modal("show");
-	}
+    html.modal("show");
+	
 });
 </script>
