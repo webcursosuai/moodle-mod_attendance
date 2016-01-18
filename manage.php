@@ -26,7 +26,6 @@
 require_once(dirname(__FILE__).'/../../config.php');
 require_once(dirname(__FILE__).'/locallib.php');
 $PAGE->requires->jquery();
-$PAGE->requires->bootstrapbase();
 $PAGE->requires->jquery_plugin('ui');
 $PAGE->requires->jquery_plugin('ui-css');
 $pageparams = new att_manage_page_params();
@@ -129,6 +128,6 @@ function showModal() {
     '</div>' +
     '</div>';
     $('#modal').html(htmlmodal);
-    $('#modal').modal('show');
+    jQuery('#modal').modal('show');
 }
 </script>
