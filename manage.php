@@ -99,45 +99,18 @@ echo $output->footer();
 <script>
 $('table').find('tr').each(function(){
 		$(this).find('th').eq(4).after('<th class="header c7" style="text-align:center;width:*;" scope="col">QR Code</th>');
-		$(this).find('td').eq(4).after('<td class="cell c7" style="width:1px;"><img class="clickeable" src="pix/qr-icon.png" /></td>');
+		$(this).find('td').eq(4).after('<td class="cell c7" style="width:1px;"><img click="showModal()" src="pix/qr-icon.png" /></td>');
 });
 </script>
 
-<script>
-	
-$( ".clickeable" ).click(function() {	
+<script>	
 // 	var sessionid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
+
+
+function showModal() {
  	var titles = "Edit QR Code Print Page";
 	var bodys = "Course: <?php echo $course->fullname; ?> " ;
-
-//     var html = '<div class="modal fade" tabindex="-1" role="dialog">' +
-//     '<div class="modal-dialog">' +
-//     '<div class="modal-content">' +
-//     '<div class="modal-header">' +
-//     '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-//     '<h4 class="modal-title">' + title + '</h4>' +
-//     '</div>' +
-//     '<div class="modal-body">' + 
-//     '<h5>' + body + '</h5>' +
-//     '<h5>Title</h5>'+
-//     '<input type="text" class="form-control" placeholder="Enter a title for your print">'+
-//     '<h5>QR Code Preview</h5>'+
-//     '<h5>Optional Message</h5>'+
-//     '<input type="text" class="form-control" placeholder="Enter a message for your print">'+
-//     '</div>' +
-//     '<div class="modal-footer">' + 
-//     '<center><button type="button" class="btn btn-primary">Save & Print</button>' +
-//     '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button></center>' +
-//     '</div>' +
-//     '</div>' +
-//     '</div>' +
-//     '</div>';
-
-//     var modal = $(html);
-//     modal.modal("show");
-showModal(titles, bodys);
-function showModal(title, body) {
-    var html = '<div class="modal fade" tabindex="-1" role="dialog">' +
+	var html = '<div class="modal fade" tabindex="-1" role="dialog">' +
     '<div class="modal-dialog">' +
     '<div class="modal-content">' +
     '<div class="modal-header">' +
@@ -157,6 +130,4 @@ function showModal(title, body) {
     var modaltoshow = $(html);
     modaltoshow.modal("show");
 }
-	
-});
 </script>
