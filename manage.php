@@ -102,7 +102,7 @@ $('table').find('tr').each(function(){
 		$(this).find('td').eq(4).after('<td class="cell c7" style="width:1px;"><img onclick="showModal()" src="pix/qr-icon.png" /></td>');
 });
 </script>
-
+<div id='modal' style='display:none;'></div>
 <script>	
 // 	var sessionid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
 
@@ -110,7 +110,7 @@ $('table').find('tr').each(function(){
 function showModal() {
  	var title = "Edit QR Code Print Page";
 	var body = "Course: <?php echo $course->fullname; ?> " ;
-	var html = '<div class="modal fade" tabindex="-1" role="dialog">' +
+	var htmlmodal = '<div class="modal fade" tabindex="-1" role="dialog">' +
     '<div class="modal-dialog">' +
     '<div class="modal-content">' +
     '<div class="modal-header">' +
@@ -127,7 +127,7 @@ function showModal() {
     '</div>' +
     '</div>' +
     '</div>';
-    var modaltoshow = $(html);
-    modaltoshow.modal('toggle');
+    $('#modal').html(htmlmodal);
+    $('#modal').modal('show');
 }
 </script>
