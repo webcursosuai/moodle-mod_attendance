@@ -118,8 +118,8 @@ $('table').find('tr').each(function(){
 </script>
 
 <script>	
-// 	var sessionid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
 $( ".clickeable" ).click(function() {
+	var sessionid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
 	var body = "Course: <?php echo $course->fullname; ?> " ;
 	var htmlmodal = 
     '<p>' + body + '</p>' +
