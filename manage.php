@@ -125,7 +125,7 @@ $( ".clickeable" ).click(function() {
     '<h5>Title</h5>'+
     '<input type="text" class="form-control" placeholder="Enter a title for your print">'+
     '<h5>QR Code Preview</h5>'+
-    '<img src="<?php echo file_encode_url($CFG -> dataroot. "/temp/attendance/" . $att->id . "/qr" ); ?>'+ sessionid +'.png">'+
+    '<img src="<?php echo file_encode_url($CFG -> dataroot. "/temp/attendance/" . $att->id . "/qr" ; ?> '+ sessionid +'.png <?php echo ")";?>">'+
     '<h5>Optional Message</h5>'+
     '<input type="text" class="form-control" placeholder="Enter a message for your print">';
     $('#insertbody').html(htmlmodal);
