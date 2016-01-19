@@ -132,10 +132,12 @@ switch ($action) {
 		
 		$now = time();
 		
+		$statuses = implode(',', array_keys( (array)$att->get_statuses() ));
+		
 		$record = new stdClass();
 		$record->studentid = $user->id;
 		$record->statusid = "5";
-		$record->statusset = "5,7,8,6";
+		$record->statusset = $statuses;
 		$record->remarks = " ";
 		$record->sessionid = $sessionid;
 		$record->timetaken = $now;
