@@ -106,7 +106,7 @@ echo $output->footer();
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save & Print</button>
+    <button class="btn btn-primary" onclick="window.print()">Save & Print</button>
   </div>
 </div>
 <!-- Scripts -->
