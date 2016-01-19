@@ -15,15 +15,13 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * local functions and constants for module attendance
+ * Mobile app for module attendance
  *
- * @package   mod_attendance
- * @copyright  2011 Artem Andreev <andreev.artem@gmail.com>
+ * @package   mod_attendance_mobile
+ * @copyright  2016 Jorge Cabané <jorgecabane93@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
-//my own functions for mobile app----------------------------------------------------------------------------------------------------
 function attendance_json_output($jsonOutput)
 {
 	global $OUTPUT;
