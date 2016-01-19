@@ -93,56 +93,42 @@ mod_attendance_notifyqueue::show();
 echo $output->render($tabs);
 echo $output->render($filtercontrols);
 echo $output->render($sesstable);
+echo $output->footer();
 ?>
-<div><a href="#myModal" role="button" class="btn" data-toggle="modal">Launch demo modal</a>
- 
 <!-- Modal -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-    <h3 id="myModalLabel">Modal header</h3>
+   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h3 id="myModalLabel">Edit QR Code Print Page</h3>
   </div>
   <div class="modal-body">
-    <p>One fine body…</p>
+    <p id="insertbody"></p>
   </div>
   <div class="modal-footer">
     <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-    <button class="btn btn-primary">Save changes</button>
+    <button class="btn btn-primary">Save & Print</button>
   </div>
-</div></div>
-<?php 
-echo $output->footer();
-?>
+</div>
+<!-- Scripts -->
 <script>
 $('table').find('tr').each(function(){
 		$(this).find('th').eq(4).after('<th class="header c7" style="text-align:center;width:*;" scope="col">QR Code</th>');
-		$(this).find('td').eq(4).after('<td class="cell c7" style="width:1px;"><img onclick="showModal()" src="pix/qr-icon.png" /></td>');
+		$(this).find('td').eq(4).after('<td class="cell c7" style="width:1px;"><img class="clickeable" data-toggle="modal" src="pix/qr-icon.png" /></td>');
 });
 </script>
 
 <script>	
 // 	var sessionid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
-function showModal() {
- 	var title = "Edit QR Code Print Page";
+$( ".clickeable" ).click(function() {
 	var body = "Course: <?php echo $course->fullname; ?> " ;
-	var htmlmodal = '<div class="modal fade" tabindex="-1" role="dialog">' +
-    '<div class="modal-dialog">' +
-    '<div class="modal-content">' +
-    '<div class="modal-header">' +
-    '<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-    '<h4 class="modal-title">' + title + '</h4>' +
-    '</div>' +
-    '<div class="modal-body">' +
+	var htmlmodal = 
     '<p>' + body + '</p>' +
-    '</div>' +
-    '<div class="modal-footer">' +
-    '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
-    '<button type="button" class="btn btn-primary">Save changes</button>' +
-    '</div>' +
-    '</div>' +
-    '</div>' +
-    '</div>';
-    $('#modal').html(htmlmodal);
-    $('#modal').modal('show');
-}
+    '<h5>Title</h5>'+
+    '<input type="text" class="form-control" placeholder="Enter a title for your print">'+
+    '<h5>QR Code Preview</h5>'+
+    '<img src="<?php echo $CFG -> dataroot. "/temp/attendance/" . $att->id . "/qr"; ?>'+ sessionid +'.png">'
+    '<h5>Optional Message</h5>'+
+    '<input type="text" class="form-control" placeholder="Enter a message for your print">';
+    $('#insertbody').html(htmlmodal);
+});
 </script>
