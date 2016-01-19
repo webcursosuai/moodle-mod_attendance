@@ -122,12 +122,13 @@ $( ".clickeable" ).click(function() {
 	var body = "Course: <?php echo $course->fullname; ?> " ;
 	var url = <?php echo $CFG -> dataroot. "/temp/attendance/" . $att->id . "/qr"; ?>;
 	var typeoffile = '.png';
+	var src = <?php echo "file_encode_url("; ?> 'url + sessionid + typeoffile ' <?php echo ")"; ?> ;
 	var htmlmodal = 
     '<p>' + body + '</p>' +
     '<h5>Title</h5>'+
     '<input type="text" class="form-control" placeholder="Enter a title for your print">'+
     '<h5>QR Code Preview</h5>'+
-    '<img src="<?php echo "file_encode_url("; ?> 'url + sessionid + typeoffile ' <?php echo ")"; ?>">'+
+    '<img src="'+src+'">'+
     '<h5>Optional Message</h5>'+
     '<input type="text" class="form-control" placeholder="Enter a message for your print">';
     $('#insertbody').html(htmlmodal);
