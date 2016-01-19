@@ -113,7 +113,7 @@ echo $output->footer();
 <script>
 $('table').find('tr').each(function(){
 		$(this).find('th').eq(4).after('<th class="header c7" style="text-align:center;width:*;" scope="col">QR Code</th>');
-		$(this).find('td').eq(4).after('<td class="cell c7" style="width:1px;"><img class="clickeable" data-toggle="modal" src="pix/qr-icon.png" /></td>');
+		$(this).find('td').eq(4).after('<td class="cell c7" style="width:1px;"><a data-target="#myModal" data-toggle="modal" class="clickeable"><img src="pix/qr-icon.png" /></a></td>');
 });
 </script>
 
