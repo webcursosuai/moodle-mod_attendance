@@ -116,7 +116,6 @@ $('table').find('tr').each(function(){
 		$(this).find('td').eq(4).after('<td class="cell c7" style="width:1px;"><a data-target="#myModal" data-toggle="modal" class="clickeable"><img src="pix/qr-icon.png" /></a></td>');
 });
 </script>
-
 <script>	
 $( ".clickeable" ).click(function() {
 	var sessionid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
