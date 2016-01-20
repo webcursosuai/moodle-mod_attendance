@@ -109,7 +109,6 @@ switch ($action) {
 		
 		//taking attendance from mobile app
 		//requiered params: username, password and session id
-		//not sure but seams that statusid= 5 and statusset 5,7,8,6 means present
 		require_once $CFG->dirroot . '/mod/attendance/locallib.php';
 
 		$pageparams = new stdClass();
@@ -181,6 +180,14 @@ switch ($action) {
 // 		$event->add_record_snapshot('attendance_log', $record);
 // 		$event->trigger();
 		attendance_json_error ( 'Attendance Taken Correctly!' );
+		break;
+		
+		case 'bringqrcode':
+			require_once $CFG->dirroot . '/mod/attendance/lib.php';
+			$context = optional_param ( 'context', null , PARAM_RAW_TRIMMED );
+			$filearea = optional_param ( 'filearea', null , PARAM_RAW_TRIMMED );
+			$filename = optional_param ( 'filename', null , PARAM_RAW_TRIMMED );
+			attendance_pluginfile($context, $filearea, $filename);
 		break;
 }
 //end of actions

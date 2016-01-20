@@ -411,3 +411,20 @@ function attendance_get_max_statusset($attendanceid) {
     }
     return 0;
 }
+function attendance_pluginfile($context, $filearea, $filename)
+{
+	global $DB, $CFG;
+
+	require_once $CFG->dirroot . '/mod/attendance/locallib.php';
+
+	$fs = get_file_storage();
+
+	if (! $file = $fs->get_file($context->id, 'mod_attendance', $filearea, '0', '/', $filename)) {
+		// submission .pdf hay que cambiar al nombre del png user-curso-pag.png
+		echo $context->id . ".." . $filearea . ".." . $arg0 . ".." . $filename;
+		echo "File not found";
+		send_file_not_found();
+	}
+
+	send_file($file, $filename);
+}
