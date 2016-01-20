@@ -755,7 +755,7 @@ class attendance {
             attendance_create_qr_image($url."*".$sess->id."*".$sess->attendanceid,$sess->attendanceid,$sess->id);
             $path= $CFG -> dataroot. "/temp/attendance/" . $sess->attendanceid;
             $filename = "qr" . $sess->id . ".png";
-            attendance_submit($sess->attendanceid,$this->context, $path, $filename, $USER );
+            //attendance_submit($sess->attendanceid,$this->context, $path, $filename, $USER );
             //."-".$sess->sessdate
         }
     }
