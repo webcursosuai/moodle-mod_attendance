@@ -760,62 +760,62 @@ class attendance {
         }
     }
     
-//     function attendance_submit($attendance, $context, $path, $filename, $user)
-//     {
-//     	global $DB, $USER, $CFG;
+    function attendance_submit($attendance, $context, $path, $filename, $user)
+    {
+    	global $DB, $USER, $CFG;
     
-//     	// Calculate anonymous file name from original file name
-//     	$filenameparts = explode(".", $filename);
-//     	$anonymousfilename = $filenameparts[0] . "_a." . $filenameparts[1];
+    	// Calculate anonymous file name from original file name
+    	$filenameparts = explode(".", $filename);
+    	$anonymousfilename = $filenameparts[0] . "_a." . $filenameparts[1];
     
-//     	// Verify that both image files (anonymous and original) exist
-//     	if (! file_exists($path . "/" . $filename) || ! file_exists($path . "/" . $anonymousfilename)) {
-//     		throw new Exception("Invalid path and/or filename $path $filename");
-//     	}
+    	// Verify that both image files (anonymous and original) exist
+    	if (! file_exists($path . "/" . $filename) || ! file_exists($path . "/" . $anonymousfilename)) {
+    		throw new Exception("Invalid path and/or filename $path $filename");
+    	}
     
-//     	// Filesystem
-//     	$fs = get_file_storage();
+    	// Filesystem
+    	$fs = get_file_storage();
     
-//     	$userid = isset($user->firstname) ? $user->id : $USER->id;
-//     	$author = isset($user->firstname) ? $user->firstname . ' ' . $user->lastname : $USER->firstname . ' ' . $USER->lastname;
+    	$userid = isset($user->firstname) ? $user->id : $USER->id;
+    	$author = isset($user->firstname) ? $user->firstname . ' ' . $user->lastname : $USER->firstname . ' ' . $USER->lastname;
     
-//     	// Copy file from temp folder to Moodle's filesystem
-//     	$file_record = array(
-//     			'contextid' => $context->id,
-//     			'component' => 'mod_attendance',
-//     			'filearea' => 'qr',
-//     			'itemid' => $attendance,
-//     			'filepath' => '/',
-//     			'filename' => $filename,
-//     			'timecreated' => time(),
-//     			'timemodified' => time(),
-//     			'userid' => $userid,
-//     			'author' => $author,
-//     			'license' => 'allrightsreserved'
-//     	);
+    	// Copy file from temp folder to Moodle's filesystem
+    	$file_record = array(
+    			'contextid' => $context->id,
+    			'component' => 'mod_attendance',
+    			'filearea' => 'qr',
+    			'itemid' => $attendance,
+    			'filepath' => '/',
+    			'filename' => $filename,
+    			'timecreated' => time(),
+    			'timemodified' => time(),
+    			'userid' => $userid,
+    			'author' => $author,
+    			'license' => 'allrightsreserved'
+    	);
     
-//     	// If the file already exists we delete it
-//     	if ($fs->file_exists($context->id, 'mod_attendance', 'qr', $attendance->id, '/', $filename)) {
-//     		$previousfile = $fs->get_file($context->id, 'mod_attendance', 'qr', $attendance->id, '/', $filename);
-//     		$previousfile->delete();
-//     	}
+    	// If the file already exists we delete it
+    	if ($fs->file_exists($context->id, 'mod_attendance', 'qr', $attendance->id, '/', $filename)) {
+    		$previousfile = $fs->get_file($context->id, 'mod_attendance', 'qr', $attendance->id, '/', $filename);
+    		$previousfile->delete();
+    	}
     
-//     	// Info for the new file
-//     	$fileinfo = $fs->create_file_from_pathname($file_record, $path . '/' . $filename);
+    	// Info for the new file
+    	$fileinfo = $fs->create_file_from_pathname($file_record, $path . '/' . $filename);
     
-//     	// Now copying the anonymous version of the file
-//     	$file_record['filename'] = $anonymousfilename;
+    	// Now copying the anonymous version of the file
+    	$file_record['filename'] = $anonymousfilename;
     
-//     	// Check if anoymous file exists and delete it
-//     	if ($fs->file_exists($context->id, 'mod_attendance', 'qr', $attendance->id, '/', $anonymousfilename)) {
-//     		$previousfile = $fs->get_file($context->id, 'mod_attendance', 'qr', $attendance->id, '/', $anonymousfilename);
-//     		$previousfile->delete();
-//     	}
+    	// Check if anoymous file exists and delete it
+    	if ($fs->file_exists($context->id, 'mod_attendance', 'qr', $attendance->id, '/', $anonymousfilename)) {
+    		$previousfile = $fs->get_file($context->id, 'mod_attendance', 'qr', $attendance->id, '/', $anonymousfilename);
+    		$previousfile->delete();
+    	}
     
-//     	$fileinfoanonymous = $fs->create_file_from_pathname($file_record, $path . '/' . $anonymousfilename);
+    	$fileinfoanonymous = $fs->create_file_from_pathname($file_record, $path . '/' . $anonymousfilename);
     
-//     	return true;
-//     }
+    	return true;
+    }
 
     public function update_session_from_form_data($formdata, $sessionid) {
         global $DB;
