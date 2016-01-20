@@ -756,7 +756,6 @@ class attendance {
             $path= $CFG -> dataroot. "/temp/attendance/" . $sess->attendanceid;
             $filename = "qr" . $sess->id . ".png";
             //attendance_submit($sess->attendanceid,$this->context, $path, $filename, $USER );
-            //."-".$sess->sessdate
         }
     }
     
