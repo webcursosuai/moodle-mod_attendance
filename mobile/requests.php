@@ -132,13 +132,14 @@ switch ($action) {
 		
 		$now = time();
 		
-		$statuses = implode(',', array_keys( (array)$att->get_statuses() ));
+		$statuses = implode(',', array_keys( (array)$att->att_get_statuses($attendanceid) ));
+		$statussesarray = explode(",", $statuses);
 		
 		$record = new stdClass();
 		$record->studentid = $user->id;
-		$record->statusid = "5";
-		$record->statusset = $statuses;
-		$record->remarks = " ";
+		$record->statusid = $statussesarray[0]; // le hace un explode y le saca el primer parametro
+		$record->statusset = $statuses;  //parece que esto esta funcionando
+		$record->remarks = "Self-recorded";
 		$record->sessionid = $sessionid;
 		$record->timetaken = $now;
 		$record->takenby = $user->id;
