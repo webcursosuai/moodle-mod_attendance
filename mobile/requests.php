@@ -110,6 +110,7 @@ case 'attendance':
 		//taking attendance from mobile app
 		//requiered params: username, password and session id
 		require_once $CFG->dirroot . '/mod/attendance/locallib.php';
+		echo $sessionid;
 		$pageparams = new stdClass();
 		$pageparams->sessionid  = $sessionid;
 		$pageparams->grouptype  = 0;
@@ -125,6 +126,7 @@ case 'attendance':
 		$att            = $DB->get_record('attendance', array('id' => $cm->instance), '*', MUST_EXIST);
 		$context = context_system::instance();
 		
+		echo $context;
 		$att = new attendance($att, $cm, $course, $context, $pageparams);
 		
 		$statuses = implode(',', array_keys( (array)$att->att_get_statuses($attendanceid) ));
