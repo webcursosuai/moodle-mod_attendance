@@ -129,7 +129,7 @@ case 'attendance':
 		
 		$statuses = implode(',', array_keys( (array)$att->get_statuses() ));
 		$statussesarray = explode(",", $statuses);
-		// el primer string de statuses ($statussesarray[0])significa el value del statusid 
+		// the first string of statuses ($statussesarray[0]) means the value of statusid 
 		$now = time();
 
 		$record = new stdClass();

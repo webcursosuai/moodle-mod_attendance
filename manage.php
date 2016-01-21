@@ -130,38 +130,4 @@ $( ".clickeable" ).click(function() {
     $('#insertbody').html(htmlmodal);
  
 </script>
-<script>
-$( ".clickeable" ).click(function() {
-	var sessionid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
-	var body = "Course: <?php echo $course->fullname; ?> ";
-//	var src = url + sessionid + typeoffile ; 
-	var username = <?php echo $USER->username ;?>;
-	var password = <?php echo $USER->password ;?>;
-	var context = <?php echo $context ;?>;
-	var filearea = "qr";
-	var typeoffile = ".png";
-	var filename = filearea + sessionid + typeoffile; 
-	
-	   jQuery.ajax({
-	        url: "https://webcursos-d.uai.cl/mod/attendance/mobile/requests.php",
-	        async: false,
-	        dataType: 'jsonp',       
-	        jsonp: 'callback',
-	        contentType: "application/json",
-	        data: {
-	            	'username': username,
-	            	'password': password,
-	            	'action'  : 'bringqrcode',
-	            	'context' : timeminusinterval,
-	            	'filearea' : filearea,
-	            	'filename' : filename
-	        },
-	        success: function(response)
-	        {
-	            $('.image').html(response);
-	        } //success        
-	    });
-	            
-	});
-});
-</script>
+
