@@ -105,15 +105,15 @@ switch ($action) {
 		break;
 		
 		
-	case 'attendance':
+case 'attendance':
 		
 		//taking attendance from mobile app
 		//requiered params: username, password and session id
+		//not sure but seams that statusid= 5 and statusset 5,7,8,6 means present
 		require_once $CFG->dirroot . '/mod/attendance/locallib.php';
-
 		$pageparams = new stdClass();
 		$pageparams->sessionid  = $sessionid;
-		$pageparams->grouptype  = "0";
+		$pageparams->grouptype  = 0;
 		$pageparams->sort       = optional_param('sort', null, PARAM_INT);
 		$pageparams->copyfrom   = optional_param('copyfrom', null, PARAM_INT);
 		$pageparams->viewmode   = optional_param('viewmode', null, PARAM_INT);
@@ -124,18 +124,17 @@ switch ($action) {
 		$cm             = get_coursemodule_from_id('attendance', $attendanceid, 0, false, MUST_EXIST);
 		$course         = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
 		$att            = $DB->get_record('attendance', array('id' => $cm->instance), '*', MUST_EXIST);
-		$context 		= context_system::instance();
+		$context = context_system::instance();
 		
 		$att = new attendance($att, $cm, $course, $context, $pageparams);
-
-		$now = time();
 		
 		$statuses = implode(',', array_keys( (array)$att->att_get_statuses($attendanceid) ));
-		//$statussesarray = explode(",", $statuses);
+		
+		$now = time();
 		
 		$record = new stdClass();
 		$record->studentid = $user->id;
-		$record->statusid = "41"; 
+		$record->statusid = "41";
 		$record->statusset = $statuses;
 		$record->remarks = " ";
 		$record->sessionid = $sessionid;
