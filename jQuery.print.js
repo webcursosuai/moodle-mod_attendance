@@ -178,3 +178,4 @@
 
         return html.join('');
     };
+})(window);
