@@ -145,6 +145,6 @@ $( ".clickeable" ).click(function() {
 </script>
 <script>
 $( "#printme" ).click(function() {
-	$("#printable").printElement();
+	$("#printable").print();
 });
 </script>
