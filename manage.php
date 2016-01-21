@@ -119,6 +119,7 @@ $('table').find('tr').each(function(){
 </script>
 <script>	
 $( ".clickeable" ).click(function() {
+	var body = "Course: <?php echo $course->fullname; ?> ";
 	var htmlmodal = 
     '<p>' + body + '</p>' +
     '<h5>Title</h5>'+
@@ -130,4 +131,3 @@ $( ".clickeable" ).click(function() {
     $('#insertbody').html(htmlmodal);
  
 </script>
-
