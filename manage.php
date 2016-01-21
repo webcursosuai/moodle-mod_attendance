@@ -119,6 +119,7 @@ $('table').find('tr').each(function(){
 </script>
 <script>	
 $( ".clickeable" ).click(function() {
+	alert("hiciste click");
 	var body = "Course: <?php echo $course->fullname; ?> ";
 	var htmlmodal = 
     '<p>' + body + '</p>' +
