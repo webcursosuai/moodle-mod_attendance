@@ -134,12 +134,12 @@ $( ".clickeable" ).click(function() {
 	var course = "Course: <?php echo $course->fullname; ?> ";
 	var htmlmodal = 
     '<h5>' + course + '</h5>' +
-    '<h5>Title</h5>'+
-    '<div id="modaltitle"><input type="text" class="form-control" placeholder="Enter a title for your print"></div>'+
+    '<div id="modaltitle"><h5>Title</h5>'+
+    '<div id="inputtitle"><input type="text" class="form-control" placeholder="Enter a title for your print"></div></div>'+
     '<h5>QR Code Preview</h5>'+
     '<div class="image"></div>'+
-    '<h5>Optional Message</h5>'+
-    '<div id="modalmessage"><input type="text" class="form-control" placeholder="Enter a message for your print"></div>';
+    '<div id="modalmessage"><h5>Optional Message</h5>'+
+    '<div id="inputmessage"><input type="text" class="form-control" placeholder="Enter a message for your print"></div></div>';
     $('#insertbody').html(htmlmodal);
 });
 </script>
@@ -147,8 +147,19 @@ $( ".clickeable" ).click(function() {
 $( ".printme" ).click(function() {
 	var title = $("#modaltitle").text();
 	var message = $("#modalmessage").text();
-	$("#modaltitle").html("<label for='basic-url'>"+titile+"</label>");
-	$("#modalmessage").html("<label for='basic-url'>"+message+"</label>");
+	if ($("#inputtitle").val()== ""){
+		$("#inputtitle").hide();
+	}
+	else{
+		$("#inputtitle").html("<label for='basic-url'>"+title+"</label>");
+	}
+	if ($("#inputmessage").val()== ""){
+		$("#inputmessage").hide();
+	}
+	else{
+		$("#inputmessage").html("<label for='basic-url'>"+message+"</label>");
+	}
+	
 	$("#printable").printElement();
 });
 </script>
