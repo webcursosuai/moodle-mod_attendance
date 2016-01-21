@@ -147,13 +147,13 @@ $( ".clickeable" ).click(function() {
 $( ".printme" ).click(function() {
 	var title = $("#modaltitle").text();
 	var message = $("#modalmessage").text();
-	if ($("#inputtitle").val()== ""){
+	if ($("#inputtitle").children().val()== ""){
 		$("#modaltitle").hide();
 	}
 	else{
 		$("#inputtitle").html("<label for='basic-url'>"+title+"</label>");
 	}
-	if ($("#inputmessage").val()== ""){
+	if ($("#inputmessage").children().val()== ""){
 		$("#modalmessage").hide();
 	}
 	else{
