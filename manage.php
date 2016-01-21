@@ -23,8 +23,8 @@
  */
 require_once (dirname ( __FILE__ ) . '/../../config.php');
 require_once (dirname ( __FILE__ ) . '/locallib.php');
-//plug in to print elements inside modal
-$PAGE->requires->js ( new moodle_url ( $CFG->wwwroot . '/mod/attendance/jQuery.print.js' ) );
+// plug in to print elements inside modal
+$PAGE->requires->js ( new moodle_url ( $CFG->dirroot . '/mod/attendance/jQuery.print.js' ) );
 $PAGE->requires->jquery ();
 $PAGE->requires->jquery_plugin ( 'ui' );
 $PAGE->requires->jquery_plugin ( 'ui-css' );
@@ -105,15 +105,15 @@ echo $output->footer ();
 <!-- Modal -->
 <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog"
 	aria-labelledby="myModalLabel" aria-hidden="true">
-	<div id="printable">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal"
-				aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-			<h3 id="myModalLabel">Edit QR Code Print Page</h3>
-		</div>
-		<div class="modal-body">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal"
+			aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<h3 id="myModalLabel">Edit QR Code Print Page</h3>
+	</div>
+	<div class="modal-body">
+		<div id="printable">
 			<p id="insertbody"></p>
 		</div>
 	</div>
