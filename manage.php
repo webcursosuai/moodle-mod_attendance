@@ -131,14 +131,14 @@ $('table').find('tr').each(function(){
 </script>
 <script>	
 $( ".clickeable" ).click(function() {
-	var course = "Course: <?php echo $course->fullname; ?> ";
+	var course = "<span class='hideme'>Course: </span><?php echo $course->fullname; ?> ";
 	var htmlmodal = 
     '<h5>' + course + '</h5>' +
-    '<div id="modaltitle"><h5>Title</h5>'+
+    '<div id="modaltitle"><h5 class="hideme">Title</h5>'+
     '<div id="inputtitle"><input type="text" class="form-control" placeholder="Enter a title for your print"></div></div>'+
     '<h5>QR Code Preview</h5>'+
     '<div class="image"></div>'+
-    '<div id="modalmessage"><h5>Optional Message</h5>'+
+    '<div id="modalmessage"><h5 class="hideme">Optional Message</h5>'+
     '<div id="inputmessage"><input type="text" class="form-control" placeholder="Enter a message for your print"></div></div>';
     $('#insertbody').html(htmlmodal);
 });
@@ -159,6 +159,7 @@ $( ".printme" ).click(function() {
 	else{
 		$("#inputmessage").html("<label for='basic-url'>"+message+"</label>");
 	}
+	$(".hideme").hide();
 	$("#printable").printElement();
 });
 </script>
