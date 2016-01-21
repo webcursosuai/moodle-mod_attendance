@@ -129,14 +129,14 @@ case 'attendance':
 		$att = new attendance($att, $cm, $course, $context, $pageparams);
 		
 		$statuses = implode(',', array_keys( (array)$att->att_get_statuses($attendanceid) ));
-		
+		$statussesarray = explode(",", $statuses);
 		$now = time();
 		
 		$record = new stdClass();
 		$record->studentid = $user->id;
-		$record->statusid = "41";
+		$record->statusid = $statussesarray[0];
 		$record->statusset = $statuses;
-		$record->remarks = " ";
+		$record->remarks = get_string('set_by_student', 'mod_attendance');
 		$record->sessionid = $sessionid;
 		$record->timetaken = $now;
 		$record->takenby = $user->id;
