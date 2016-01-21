@@ -128,7 +128,8 @@ case 'attendance':
 		echo "cargue hasta context";		
 		$att = new attendance($att, $cm, $course, $context, $pageparams);
 		
-		$statuses = implode(',', array_keys( (array)$att->att_get_statuses($attendanceid) ));
+		//$statuses = implode(',', array_keys( (array)$att->att_get_statuses($attendanceid) ));
+		$statuses = implode(',', array_keys( (array)$att->get_statuses() ));
 		echo "cargue statuses";
 		$statussesarray = explode(",", $statuses);
 		$now = time();
