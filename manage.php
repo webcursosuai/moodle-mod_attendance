@@ -148,13 +148,13 @@ $( ".printme" ).click(function() {
 	var title = $("#modaltitle").text();
 	var message = $("#modalmessage").text();
 	if ($("#inputtitle").val()== ""){
-		$("#inputtitle").hide();
+		$("#modaltitle").hide();
 	}
 	else{
 		$("#inputtitle").html("<label for='basic-url'>"+title+"</label>");
 	}
 	if ($("#inputmessage").val()== ""){
-		$("#inputmessage").hide();
+		$("#modalmessage").hide();
 	}
 	else{
 		$("#inputmessage").html("<label for='basic-url'>"+message+"</label>");
