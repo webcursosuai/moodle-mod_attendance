@@ -106,10 +106,9 @@ switch ($action) {
 		
 		
 case 'attendance':
-		
+		echo "holi";
 		//taking attendance from mobile app
 		//requiered params: username, password and session id
-		//not sure but seams that statusid= 5 and statusset 5,7,8,6 means present
 		require_once $CFG->dirroot . '/mod/attendance/locallib.php';
 		$pageparams = new stdClass();
 		$pageparams->sessionid  = $sessionid;
@@ -129,6 +128,7 @@ case 'attendance':
 		$att = new attendance($att, $cm, $course, $context, $pageparams);
 		
 		$statuses = implode(',', array_keys( (array)$att->att_get_statuses($attendanceid) ));
+		echo $statuses;
 		$statussesarray = explode(",", $statuses);
 		$now = time();
 		
