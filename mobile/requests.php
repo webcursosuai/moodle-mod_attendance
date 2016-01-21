@@ -137,7 +137,7 @@ switch ($action) {
 		$record->studentid = $user->id;
 		$record->statusid = "41"; 
 		$record->statusset = $statuses;
-		$record->remarks = "Self-recorded";
+		$record->remarks = " ";
 		$record->sessionid = $sessionid;
 		$record->timetaken = $now;
 		$record->takenby = $user->id;
