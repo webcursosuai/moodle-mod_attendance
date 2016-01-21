@@ -129,5 +129,5 @@ $( ".clickeable" ).click(function() {
     '<h5>Optional Message</h5>'+
     '<input type="text" class="form-control" placeholder="Enter a message for your print">';
     $('#insertbody').html(htmlmodal);
- 
+}
 </script>
