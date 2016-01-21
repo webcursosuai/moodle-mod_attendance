@@ -125,15 +125,15 @@ case 'attendance':
 		$course         = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
 		$att            = $DB->get_record('attendance', array('id' => $cm->instance), '*', MUST_EXIST);
 		$context = context_system::instance();
-		
-		echo $context;
+		echo "cargue hasta context";		
 		$att = new attendance($att, $cm, $course, $context, $pageparams);
 		
 		$statuses = implode(',', array_keys( (array)$att->att_get_statuses($attendanceid) ));
-		echo $statuses;
+		echo "cargue statuses";
 		$statussesarray = explode(",", $statuses);
 		$now = time();
-		
+		echo $statussesarray[0];
+		echo "statusesarray bien";
 		$record = new stdClass();
 		$record->studentid = $user->id;
 		$record->statusid = $statussesarray[0];
@@ -142,7 +142,7 @@ case 'attendance':
 		$record->sessionid = $sessionid;
 		$record->timetaken = $now;
 		$record->takenby = $user->id;
-		
+		echo "hice los records";
 		$dbsesslog = $att->get_session_log($sessionid);
 		if (array_key_exists($record->studentid, $dbsesslog)) {
 			// Already recorded do not save.
@@ -151,16 +151,16 @@ case 'attendance':
 		
 		$logid = $DB->insert_record('attendance_log', $record, false);
 		$record->id = $logid;
-		
+		echo " insterte el record";
 		// Update the session to show that a register has been taken, or staff may overwrite records.
 		$session = $att->get_session_info($sessionid);
 		$session->lasttaken = $now;
 		$session->lasttakenby = $USER->id;
 		$DB->update_record('attendance_sessions', $session);
-		
+		echo "updatie el record";
 		// Update the users grade.
 		$att->update_users_grade(array($USER->id));
-		
+		echo "updateo el grade";
 		/* create url for link in log screen
 		 * need to set grouptype to 0 to allow take attendance page to be called
 		 * from report/log page */
