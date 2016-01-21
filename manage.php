@@ -145,6 +145,7 @@ $( ".clickeable" ).click(function() {
 </script>
 <script>
 $( ".printme" ).click(function() {
+	alert("imprimir");
 	$("#printable").printElement();
 });
 </script>
