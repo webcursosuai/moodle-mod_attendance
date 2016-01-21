@@ -131,9 +131,9 @@ $('table').find('tr').each(function(){
 </script>
 <script>	
 $( ".clickeable" ).click(function() {
-	var body = "Course: <?php echo $course->fullname; ?> ";
+	var course = "Course: <?php echo $course->fullname; ?> ";
 	var htmlmodal = 
-    '<h5>' + body + '</h5>' +
+    '<h5>' + course + '</h5>' +
     '<h5>Title</h5>'+
     '<input type="text" class="form-control" placeholder="Enter a title for your print">'+
     '<h5>QR Code Preview</h5>'+
