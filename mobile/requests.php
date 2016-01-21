@@ -113,7 +113,7 @@ switch ($action) {
 
 		$pageparams = new stdClass();
 		$pageparams->sessionid  = $sessionid;
-		$pageparams->grouptype  = 0;
+		$pageparams->grouptype  = "0";
 		$pageparams->sort       = optional_param('sort', null, PARAM_INT);
 		$pageparams->copyfrom   = optional_param('copyfrom', null, PARAM_INT);
 		$pageparams->viewmode   = optional_param('viewmode', null, PARAM_INT);
@@ -124,20 +124,19 @@ switch ($action) {
 		$cm             = get_coursemodule_from_id('attendance', $attendanceid, 0, false, MUST_EXIST);
 		$course         = $DB->get_record('course', array('id' => $cm->course), '*', MUST_EXIST);
 		$att            = $DB->get_record('attendance', array('id' => $cm->instance), '*', MUST_EXIST);
-		$context = context_system::instance();
+		$context 		= context_system::instance();
 		
 		$att = new attendance($att, $cm, $course, $context, $pageparams);
 
-		
 		$now = time();
 		
 		$statuses = implode(',', array_keys( (array)$att->att_get_statuses($attendanceid) ));
-		$statussesarray = explode(",", $statuses);
+		//$statussesarray = explode(",", $statuses);
 		
 		$record = new stdClass();
 		$record->studentid = $user->id;
-		$record->statusid = $statussesarray[0]; // le hace un explode y le saca el primer parametro
-		$record->statusset = $statuses;  //parece que esto esta funcionando
+		$record->statusid = "41"; 
+		$record->statusset = $statuses;
 		$record->remarks = "Self-recorded";
 		$record->sessionid = $sessionid;
 		$record->timetaken = $now;
