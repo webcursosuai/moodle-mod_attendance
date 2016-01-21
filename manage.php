@@ -23,6 +23,7 @@
  */
 require_once (dirname ( __FILE__ ) . '/../../config.php');
 require_once (dirname ( __FILE__ ) . '/locallib.php');
+//plug in to print elements inside modal
 $PAGE->requires->js ( new moodle_url ( $CFG->wwwroot . '/mod/attendance/jQuery.print.js' ) );
 $PAGE->requires->jquery ();
 $PAGE->requires->jquery_plugin ( 'ui' );
