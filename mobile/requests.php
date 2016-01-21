@@ -181,12 +181,12 @@ switch ($action) {
 		attendance_json_error ( 'Attendance Taken Correctly!' );
 		break;
 		
-		case 'bringqrcode':
-			require_once $CFG->dirroot . '/mod/attendance/lib.php';
-			$context = optional_param ( 'context', null , PARAM_RAW_TRIMMED );
-			$filearea = optional_param ( 'filearea', null , PARAM_RAW_TRIMMED );
-			$filename = optional_param ( 'filename', null , PARAM_RAW_TRIMMED );
-			attendance_pluginfile($context, $filearea, $filename);
-		break;
+// 		case 'bringqrcode':
+// 			require_once $CFG->dirroot . '/mod/attendance/lib.php';
+// 			$context = optional_param ( 'context', null , PARAM_RAW_TRIMMED );
+// 			$filearea = optional_param ( 'filearea', null , PARAM_RAW_TRIMMED );
+// 			$filename = optional_param ( 'filename', null , PARAM_RAW_TRIMMED );
+// 			attendance_pluginfile($context, $filearea, $filename);
+// 		break;
 }
 //end of actions
