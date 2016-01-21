@@ -135,16 +135,20 @@ $( ".clickeable" ).click(function() {
 	var htmlmodal = 
     '<h5>' + course + '</h5>' +
     '<h5>Title</h5>'+
-    '<input type="text" class="form-control" placeholder="Enter a title for your print">'+
+    '<div id="modaltitle"><input type="text" class="form-control" placeholder="Enter a title for your print"></div>'+
     '<h5>QR Code Preview</h5>'+
     '<div class="image"></div>'+
     '<h5>Optional Message</h5>'+
-    '<input type="text" class="form-control" placeholder="Enter a message for your print">';
+    '<div id="modalmessage"><input type="text" class="form-control" placeholder="Enter a message for your print"></div>';
     $('#insertbody').html(htmlmodal);
 });
 </script>
 <script>
 $( ".printme" ).click(function() {
+	var title = $("#modaltitle").text();
+	var message = $("#modalmessage").text();
+	$("#modaltitle").html("<label for='basic-url'>"+titile+"</label>");
+	$("#modalmessage").html("<label for='basic-url'>"+message+"</label>");
 	$("#printable").printElement();
 });
 </script>
