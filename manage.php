@@ -133,7 +133,7 @@ $('table').find('tr').each(function(){
 $( ".clickeable" ).click(function() {
 	var body = "Course: <?php echo $course->fullname; ?> ";
 	var htmlmodal = 
-    '<p>' + body + '</p>' +
+    '<h5>' + body + '</h5>' +
     '<h5>Title</h5>'+
     '<input type="text" class="form-control" placeholder="Enter a title for your print">'+
     '<h5>QR Code Preview</h5>'+
