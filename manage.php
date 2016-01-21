@@ -145,15 +145,15 @@ $( ".clickeable" ).click(function() {
 </script>
 <script>
 $( ".printme" ).click(function() {
-	var title = $("#modaltitle").text();
-	var message = $("#modalmessage").text();
-	if ($("#inputtitle").children().val()== ""){
+	var title = $("#inputtitle").children().val();
+	var message = $("#inputmessage").children().val();
+	if ( title == ""){
 		$("#modaltitle").hide();
 	}
 	else{
 		$("#inputtitle").html("<label for='basic-url'>"+title+"</label>");
 	}
-	if ($("#inputmessage").children().val()== ""){
+	if ( message == ""){
 		$("#modalmessage").hide();
 	}
 	else{
