@@ -755,11 +755,11 @@ class attendance {
             attendance_create_qr_image($url."*".$sess->id."*".$sess->attendanceid,$sess->attendanceid,$sess->id);
             $path= $CFG -> dataroot. "/temp/attendance/" . $sess->attendanceid;
             $filename = "qr" . $sess->id . ".png";
-            //attendance_submit($sess->attendanceid,$this->context, $path, $filename, $USER );
+            //attendance_submit($sess->attendanceid,$this->context, $path, $filename);
         }
     }
     
-    function attendance_submit($attendance, $context, $path, $filename, $user)
+    function attendance_submit($attendance, $context, $path, $filename)
     {
     	global $DB, $USER, $CFG;
     
@@ -774,9 +774,9 @@ class attendance {
     
     	// Filesystem
     	$fs = get_file_storage();
-    
-    	$userid = isset($user->firstname) ? $user->id : $USER->id;
-    	$author = isset($user->firstname) ? $user->firstname . ' ' . $user->lastname : $USER->firstname . ' ' . $USER->lastname;
+    	
+    	$userid =  $USER->id;
+    	$author =  $USER->firstname . ' ' . $USER->lastname;
     
     	// Copy file from temp folder to Moodle's filesystem
     	$file_record = array(
