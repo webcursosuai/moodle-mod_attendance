@@ -140,7 +140,7 @@ $( ".clickeable" ).click(function() {
     '<div id="modaltitle"><h5 class="hideme">Title</h5>'+
     '<div id="inputtitle"><input type="text" class="form-control" placeholder="Enter a title for your print"></div></div>'+
     '<h5>QR Code Preview</h5>'+
-    '<div class="image"><img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data='+src+'" alt="QR Code for this session" style="width:500px;height:500px;"></div>'+
+    '<div class="image"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='+src+'"></div>'+
     '<div id="modalmessage"><h5 class="hideme">Optional Message</h5>'+
     '<div id="inputmessage"><input type="text" class="form-control" placeholder="Enter a message for your print"></div></div>';
     $('#insertbody').html(htmlmodal);
