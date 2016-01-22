@@ -56,7 +56,7 @@ switch ($action) {
 		
 	case 'sessions' :
 		$sqlgetsessions = "SELECT sess.id AS sessionid, course.fullname AS coursename, course.id AS courseid,
-							sess.description AS description, FROM_UNIXTIME(sess.sessdate) AS time,
+							sess.description AS description, FROM_UNIXTIME(sess.sessdate) AS time, FROM_UNIXTIME(sess.sessdate-sess.duration) AS timeduration,
 							MAX(sess.timemodified) AS timemodified
 							FROM  {attendance_sessions} AS sess
 							INNER JOIN {attendance} AS att ON (att.id= sess.attendanceid )
