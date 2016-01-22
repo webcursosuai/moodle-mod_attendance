@@ -100,7 +100,7 @@
     };
 
     function _callPrint(element) {
-        if (element && element["printPage"])
+    	if (element && element["printPage"] && element["is_ready"] === true)
             element["printPage"]();
         else
             setTimeout(function () {
@@ -170,9 +170,10 @@
         }
         //Ensure that relative links work
         html.push('<base href="' + _getBaseHref() + '" />');
-        html.push('</head><body style="' + opts["printBodyOptions"]["styleToAdd"] + '" class="' + opts["printBodyOptions"]["classNameToAdd"] + '">');
+        html.push('</head><body style="' + opts["printBodyOptions"]["styleToAdd"] + '" class="' + opts["printBodyOptions"]["classNameToAdd"] + '" onload="doReady();">');
         html.push('<div class="' + $element.attr('class') + '">' + elementHtml + '</div>');
         html.push('<script type="text/javascript">function printPage(){focus();print();' + (( !opts["leaveOpen"] && opts["printMode"].toLowerCase() == 'popup') ? 'close();' : '') + '}</script>');
+        html.push('<script type="text/javascript">var is_ready = false; function doReady() {is_ready = true;}');
         html.push('</body></html>');
 
         return html.join('');
