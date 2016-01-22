@@ -124,7 +124,7 @@ echo $output->footer ();
 <style>
 .classborders {
     border-radius: 25px;
-    border: 2px solid #73AD21;
+    border: 1px solid #CBCBCB;
 }
 </style>
 <!-- Scripts -->
