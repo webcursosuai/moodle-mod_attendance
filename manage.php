@@ -146,7 +146,7 @@ $( ".clickeable" ).click(function() {
     '<h3>' + course + '</h3>' +
     '<div id="modaltitle" class="classborders"><h5 class="hideme">Optional Title</h5>'+
     '<div id="inputtitle"><input type="text" class="form-control" placeholder="Enter a title for your print"></div></div>'+
-    '<div class="classborders"><h5>Session Date</h5>'+
+    '<div class="classborders"><h5 class="hideme">Session Date</h5>'+
     '<p>'+ date + '/'+ time +'</p></div>'+
     '<div class="classborders"><h5 class="hideme">QR Code Preview</h5>'+
     '<div class="image"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='+src+'"></div><br></div>'+
