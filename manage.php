@@ -113,8 +113,7 @@ echo $output->footer ();
 		<h3 id="myModalLabel" class= "pagination-centered">Edit QR Code Print Page</h3>
 	</div>
 	<div class="modal-body">
-		<div id="printable">
-			<p id="insertbody"  class="pagination-centered"></p>
+		<div id="insertbody" class="printable pagination-centered">
 		</div>
 	</div>
 	<div class="modal-footer">
@@ -144,7 +143,7 @@ $( ".clickeable" ).click(function() {
 	var date = $(this).parent().parent().find('.c2').text();
 	var src = 'htttp://webcursos-d.uai.cl*' +sessid+ '*' + attid;
 	var htmlmodal = 
-    '<h5>' + course + '</h5>' +
+    '<h3>' + course + '</h3>' +
     '<div id="modaltitle" class="classborders"><h5 class="hideme">Optional Title</h5>'+
     '<div id="inputtitle"><input type="text" class="form-control" placeholder="Enter a title for your print"></div></div>'+
     '<div class="classborders"><h5>Session Date</h5>'+
@@ -173,6 +172,6 @@ $( ".printme" ).click(function() {
 		$("#inputmessage").html("<label for='basic-url'>"+message+"</label>");
 	}
 	$(".hideme").hide();
-	$("#printable").printElement();
+	$(".printable").printElement();
 });
 </script>
