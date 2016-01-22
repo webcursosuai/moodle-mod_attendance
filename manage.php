@@ -110,11 +110,11 @@ echo $output->footer ();
 			aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
-		<h3 id="myModalLabel">Edit QR Code Print Page</h3>
+		<h3 id="myModalLabel" class= "pagination-centered">Edit QR Code Print Page</h3>
 	</div>
 	<div class="modal-body">
 		<div id="printable">
-			<p id="insertbody"></p>
+			<p id="insertbody"  class="pagination-centered"></p>
 		</div>
 	</div>
 	<div class="modal-footer">
@@ -140,7 +140,7 @@ $( ".clickeable" ).click(function() {
     '<div id="modaltitle"><h5 class="hideme">Title</h5>'+
     '<div id="inputtitle"><input type="text" class="form-control" placeholder="Enter a title for your print"></div></div>'+
     '<h5>QR Code Preview</h5>'+
-    '<div class="image"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='+src+'"></div>'+
+    '<div class="image"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='+src+'"><br></div>'+
     '<div id="modalmessage"><h5 class="hideme">Optional Message</h5>'+
     '<div id="inputmessage"><input type="text" class="form-control" placeholder="Enter a message for your print"></div></div>';
     $('#insertbody').html(htmlmodal);
