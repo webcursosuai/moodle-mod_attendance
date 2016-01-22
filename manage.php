@@ -132,8 +132,8 @@ $('table').find('tr').each(function(){
 <script>	
 $( ".clickeable" ).click(function() {
 	var course = "<span class='hideme'>Course: </span><?php echo $course->fullname; ?> ";
-	var sessid =  <?php echo $sess->id; ?> ;
-	var attid =  <?php echo $att->id; ?> ;
+	var sessid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
+	var attid =  <?php echo $id; ?> ;
 	var src = 'htttp://webcursos-d.uai.cl*' +sessid+ '*' + attid;
 	var htmlmodal = 
     '<h5>' + course + '</h5>' +
