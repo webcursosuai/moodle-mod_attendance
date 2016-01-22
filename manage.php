@@ -126,9 +126,6 @@ echo $output->footer ();
 .classborders {
     border-radius: 25px;
     border: 2px solid #73AD21;
-    padding: 20px; 
-    width: 200px;
-    height: 150px; 
 }
 </style>
 <!-- Scripts -->
@@ -153,7 +150,7 @@ $( ".clickeable" ).click(function() {
     '<div class="classborders"><h5>Session Date</h5>'+
     '<p>'+ date + '/'+ time +'</p></div>'+
     '<div class="classborders"><h5 class="hideme">QR Code Preview</h5>'+
-    '<div class="image"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='+src+'"><br></div></div>'+
+    '<div class="image"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='+src+'"></div></div><br>'+
     '<div id="modalmessage" class="classborders"><h5 class="hideme">Optional Message</h5>'+
     '<div id="inputmessage"><input type="text" class="form-control" placeholder="Enter a message for your print"></div></div>';
     $('#insertbody').html(htmlmodal);
