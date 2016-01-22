@@ -132,12 +132,15 @@ $('table').find('tr').each(function(){
 <script>	
 $( ".clickeable" ).click(function() {
 	var course = "<span class='hideme'>Course: </span><?php echo $course->fullname; ?> ";
+	var sessid =  <?php echo $sess->id; ?> ;
+	var attid =  <?php echo $att->id; ?> ;
+	var src = 'htttp://webcursos-d.uai.cl*' +sessid+ '*' + attid;
 	var htmlmodal = 
     '<h5>' + course + '</h5>' +
     '<div id="modaltitle"><h5 class="hideme">Title</h5>'+
     '<div id="inputtitle"><input type="text" class="form-control" placeholder="Enter a title for your print"></div></div>'+
     '<h5>QR Code Preview</h5>'+
-    '<div class="image"></div>'+
+    '<div class="image"><img src="https://api.qrserver.com/v1/create-qr-code/?size=500x500&data='+src+'" alt="QR Code for this session" style="width:500px;height:500px;"></div>'+
     '<div id="modalmessage"><h5 class="hideme">Optional Message</h5>'+
     '<div id="inputmessage"><input type="text" class="form-control" placeholder="Enter a message for your print"></div></div>';
     $('#insertbody').html(htmlmodal);
