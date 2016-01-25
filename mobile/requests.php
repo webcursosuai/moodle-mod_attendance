@@ -109,7 +109,7 @@ case 'attendance':
 		//taking attendance from mobile app
 		//requiered params: username, password and session id
 		require_once $CFG->dirroot . '/mod/attendance/locallib.php';
-
+		
 		$pageparams = new stdClass();
 		$pageparams->sessionid  = $sessionid;
 		$pageparams->grouptype  = 0;
@@ -132,9 +132,19 @@ case 'attendance':
 		// the first string of statuses ($statussesarray[0]) means the value of statusid 
 		$now = time();
 
+		//late checks if you took attendance late or not
+		$late = optional_param ( 'late', null , PARAM_INT );
+		if($late == 0){
+			//not late
+			$statusid = $statussesarray[0];
+		}
+		else{
+			//late
+			$statusid = $statussesarray[1];
+		}
 		$record = new stdClass();
 		$record->studentid = $user->id;
-		$record->statusid = $statussesarray[0];
+		$record->statusid = $statusid;
 		$record->statusset = $statuses;
 		$record->remarks = get_string('set_by_student', 'mod_attendance');
 		$record->sessionid = $sessionid;
