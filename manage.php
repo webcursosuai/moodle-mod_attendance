@@ -141,7 +141,7 @@ $( ".clickeable" ).click(function() {
 	var attid =  <?php echo $id; ?> ;
 	var time = $(this).parent().parent().find('.c3').text();
 	var date = $(this).parent().parent().find('.c2').text();
-	var src = 'htttp://webcursos-d.uai.cl*' +sessid+ '*' + attid;
+	var src = 'http://webcursos-d.uai.cl*' +sessid+ '*' + attid;
 	var htmlmodal = 
     '<h3>' + course + '</h3>' +
     '<div id="modaltitle" class="classborders"><h5 class="hideme">Optional Title</h5>'+
