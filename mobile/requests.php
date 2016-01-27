@@ -161,10 +161,10 @@ case 'attendance':
 		$session = $att->get_session_info($sessionid);
 		$session->lasttaken = $now;
 		$session->lasttakenby = $USER->id;
-		$DB->update_record('attendance_sessions', $session);
+		$updaterecord = $DB->update_record('attendance_sessions', $session);
 
 		// Update the users grade.
-		$att->update_users_grade(array($USER->id));
+		$updategrade = $att->update_users_grade(array($USER->id));
 
 		/* create url for link in log screen
 		 * need to set grouptype to 0 to allow take attendance page to be called
@@ -184,7 +184,14 @@ case 'attendance':
 // 		$event->add_record_snapshot('attendance_sessions', $session);
 // 		$event->add_record_snapshot('attendance_log', $record);
 // 		$event->trigger();
-		attendance_json_error ( 'Attendance Taken Correctly!' );
+		if($logid && $updaterecord && $updategrade ){
+		attendance_json_error ( '1' );
+		}
+		else
+		{
+		attendance_json_error ( '0' );
+		}
+		
 		break;
 		
 // 		case 'bringqrcode':
