@@ -153,9 +153,9 @@ $( ".clickeable" ).click(function() {
     '<div id="modalmessage" class="classborders"><h5 class="hideme">Optional Message</h5>'+
     '<div id="inputmessage"><input type="text" class="form-control" placeholder="Enter a message for your print"></div></div>';
     $('#insertbody').html(htmlmodal);
-    $('loaderimage').show();
+    $('.loaderimage').show();
     $('.loadimage').on('load', function(){
-    $('loaderimage').hide();
+    $('.loaderimage').hide();
     });
 });
 </script>
