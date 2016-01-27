@@ -149,10 +149,14 @@ $( ".clickeable" ).click(function() {
     '<div class="classborders"><h5 class="hideme">Session Date</h5>'+
     '<p>'+ date + '/'+ time +'</p></div>'+
     '<div class="classborders"><h5 class="hideme">QR Code Preview</h5>'+
-    '<div class="image"><img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='+src+'"></div><br></div>'+
+    '<div class="image"><img class="loaderimage" src="pix/spinner.gif" style="display:none;"><img class="loadimage" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='+src+'"></div><br></div>'+
     '<div id="modalmessage" class="classborders"><h5 class="hideme">Optional Message</h5>'+
     '<div id="inputmessage"><input type="text" class="form-control" placeholder="Enter a message for your print"></div></div>';
     $('#insertbody').html(htmlmodal);
+    $('loaderimage').show();
+    $('.loadimage').on('load', function(){
+    $('loaderimage').hide();
+    });
 });
 </script>
 <script>
@@ -174,4 +178,7 @@ $( ".printme" ).click(function() {
 	$(".hideme").hide();
 	$(".printable").printElement();
 });
+</script>
+<script>
+
 </script>

@@ -22,6 +22,11 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+/**
+ * Returns a json string for a jsonOutput
+ *
+ * @param unknown $jsonOutput
+ */
 function attendance_json_output($jsonOutput)
 {
 	global $OUTPUT;

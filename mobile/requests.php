@@ -66,21 +66,18 @@ switch ($action) {
 									(SELECT course FROM 
 									(SELECT c.id AS course
 									FROM {user} AS u
-									INNER JOIN {role_assignments} AS ra ON (ra.userid = u.id)
+									INNER JOIN {role_assignments} AS ra ON (ra.userid = u.id AND u.id= ?)
 									INNER JOIN {context} AS ct ON (ct.id = ra.contextid)
 									INNER JOIN {course} AS c ON (c.id = ct.instanceid)
-									INNER JOIN {role} AS r ON (r.id = ra.roleid)	
-									WHERE u.id= ? ) as courses)
+									INNER JOIN {role} AS r ON (r.id = ra.roleid) ) as courses)
 							AND 
 							sess.id NOT IN
 								( SELECT takensessions FROM (
 									SELECT sess.id AS takensessions FROM mdl_attendance_log  AS log
-									INNER JOIN mdl_user AS users ON ( users.id = log.studentid )
-									INNER JOIN mdl_attendance_sessions AS sess ON (sess.id = log.sessionid)
+									INNER JOIN mdl_user AS users ON ( users.id = log.studentid AND users.id = ?)
+									INNER JOIN mdl_attendance_sessions AS sess ON (sess.id = log.sessionid AND FROM_UNIXTIME(sess.sessdate) >= ?)
 									INNER JOIN mdl_attendance AS att ON (att.id= sess.attendanceid )
-									INNER JOIN mdl_course AS course ON ( course.id = att.course )
-									WHERE users.id = ? ) AS taken)
-							AND FROM_UNIXTIME(sess.sessdate) >= ?
+									INNER JOIN mdl_course AS course ON ( course.id = att.course ) ) AS taken)
 							GROUP BY sess.sessdate
 							ORDER BY FROM_UNIXTIME(sess.sessdate) ASC
 				";
@@ -132,7 +129,7 @@ case 'attendance':
 		// the first string of statuses ($statussesarray[0]) means the value of statusid 
 		$now = time();
 
-		//late checks if you took attendance late or not
+		//late checks whether you took attendance late or not
 		$late = optional_param ( 'late', null , PARAM_INT );
 		if($late == 0){
 			//not late
