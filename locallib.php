@@ -777,8 +777,7 @@ class attendance {
     public function attendance_submit($session, $context, $path, $filename)
     {
     	global $DB, $USER, $CFG;
-    
-    	// Calculate anonymous file name from original file name
+    	
     	$filenameparts = explode(".", $filename);
     
     	// Verify that both image files (anonymous and original) exist
