@@ -138,10 +138,11 @@ $('table').find('tr').each(function(){
 $( ".clickeable" ).click(function() {
 	var course = "<span class='hideme'>Course: </span><?php echo $course->fullname; ?> ";
 	var sessid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
-	var attid =  <?php echo $id; ?> ;
+	//var attid =  <?php echo $id; ?> ;
 	var time = $(this).parent().parent().find('.c3').text();
 	var date = $(this).parent().parent().find('.c2').text();
-	var src = 'http://webcursos-d.uai.cl*' +sessid+ '*' + attid;
+	//var src = 'http://webcursos-d.uai.cl*' +sessid+ '*' + attid;
+	var src = <?php echo $CFG->wwwroot . "/pluginfile.php/$cm->id/mod_attendance/qr/"+ sessid +"/qr.png"; ?>;
 	var htmlmodal = 
     '<h3>' + course + '</h3>' +
     '<div id="modaltitle" class="classborders"><h5 class="hideme">Optional Title</h5>'+
@@ -149,7 +150,8 @@ $( ".clickeable" ).click(function() {
     '<div class="classborders"><h5 class="hideme">Session Date</h5>'+
     '<p>'+ date + '/'+ time +'</p></div>'+
     '<div class="classborders"><h5 class="hideme">QR Code Preview</h5>'+
-    '<div class="image"><img class="loaderimage" src="pix/spinner.gif" style="display:none;"><img class="loadimage" src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='+src+'"></div><br></div>'+
+    '<div class="image"><img class="loaderimage" src="pix/spinner.gif" style="display:none;">'+
+    '<img class="loadimage" src="'+src+'"></div><br></div>'+
     '<div id="modalmessage" class="classborders"><h5 class="hideme">Optional Message</h5>'+
     '<div id="inputmessage"><input type="text" class="form-control" placeholder="Enter a message for your print"></div></div>';
     $('#insertbody').html(htmlmodal);
