@@ -18,7 +18,7 @@
  * Mobile app for module attendance
  *
  * @package   mod_attendance_mobile
- * @copyright  2016 Jorge Cabané <jorgecabane93@gmail.com>
+ * @copyright  2016 Jorge Cabanï¿½ <jorgecabane93@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
@@ -123,10 +123,11 @@ function attendance_create_qr_image($qrstring,$attendanceid,$sessid)
 		mkdir($path, 0777, true);
 	}
 	
-	$img = $path . "/qr" . $sessid . ".png";
+	$filename = "qr.png";
+	$img = $path . "/". $filename;
 
 	QRcode::png($qrstring, $img);
-	return 	$img;
+	return 	array($path, $filename);
 }
 /**
  * Creates a QR image based on a string

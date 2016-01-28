@@ -381,7 +381,7 @@ function attendance_pluginfile($course, $cm, $context, $filearea, $args, $forced
     }
 
     // Session area is served by pluginfile.php.
-    $fileareas = array('session');
+    $fileareas = array('session', 'qr');
     if (!in_array($filearea, $fileareas)) {
         return false;
     }
@@ -411,20 +411,3 @@ function attendance_get_max_statusset($attendanceid) {
     }
     return 0;
 }
-// function attendance_pluginfile($context, $filearea, $filename)
-// {
-// 	global $DB, $CFG;
-
-// 	require_once $CFG->dirroot . '/mod/attendance/locallib.php';
-
-// 	$fs = get_file_storage();
-//  	$arg = "0";
-// 	if (! $file = $fs->get_file($context->id, 'mod_attendance', $filearea, $arg, '/', $filename)) {
-// 		// submission .pdf hay que cambiar al nombre del png user-curso-pag.png
-// 		echo $context->id . ".." . $filearea . ".." . $arg . ".." . $filename;
-// 		echo "File not found";
-// 		send_file_not_found();
-// 	}
-
-// 	send_file($file, $filename);
-// }
