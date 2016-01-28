@@ -142,7 +142,8 @@ $( ".clickeable" ).click(function() {
 	var time = $(this).parent().parent().find('.c3').text();
 	var date = $(this).parent().parent().find('.c2').text();
 	//var src = 'http://webcursos-d.uai.cl*' +sessid+ '*' + attid;
-	var src = <?php echo $CFG->wwwroot . "/pluginfile.php/$cm->id/mod_attendance/qr/"+ sessid +"/qr.png"; ?>;
+	var path = <?php echo $CFG->wwwroot . "/pluginfile.php/$cm->id/mod_attendance/qr/";?> ;
+	var src = path + sessid + "/qr.png";
 	var htmlmodal = 
     '<h3>' + course + '</h3>' +
     '<div id="modaltitle" class="classborders"><h5 class="hideme">Optional Title</h5>'+
