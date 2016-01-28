@@ -184,7 +184,7 @@ case 'attendance':
 // 		$event->add_record_snapshot('attendance_sessions', $session);
 // 		$event->add_record_snapshot('attendance_log', $record);
 // 		$event->trigger();
-		if($logid && $updaterecord && $updategrade ){
+		if($logid && $updaterecord ){
 		attendance_json_error ( '1' );
 		}
 		else
