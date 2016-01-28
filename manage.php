@@ -152,7 +152,7 @@ $( ".clickeable" ).click(function() {
     '<p>'+ date + '/'+ time +'</p></div>'+
     '<div class="classborders"><h5 class="hideme">QR Code Preview</h5>'+
     '<div class="image"><img class="loaderimage" src="pix/spinner.gif" style="display:none;">'+
-    '<img class="loadimage" src="'+src+'"></div><br></div>'+
+    '<img class="loadimage" src="'+src+'" style="height:300px; width:300px;"></div><br></div>'+
     '<div id="modalmessage" class="classborders"><h5 class="hideme">Optional Message</h5>'+
     '<div id="inputmessage"><input type="text" class="form-control" placeholder="Enter a message for your print"></div></div>';
     $('#insertbody').html(htmlmodal);
