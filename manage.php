@@ -138,14 +138,12 @@ $('table').find('tr').each(function(){
 $( ".clickeable" ).click(function() {
 	var course = "<span class='hideme'>Course: </span><?php echo $course->fullname; ?> ";
 	var sessid = $(this).parent().parent().find('.action-icon').attr('href').match(/sessionid=([0-9]+)/)[1];
-	console.log("sessid: "+sessid);
 	var attid =  <?php echo $id; ?> ;
 	var time = $(this).parent().parent().find('.c3').text();
 	var date = $(this).parent().parent().find('.c2').text();
 	//var src = 'http://webcursos-d.uai.cl*' +sessid+ '*' + attid;
 	var path = "<?php echo "webcursos-d.uai.cl/pluginfile.php/".$context->id."/mod_attendance/qr/"; ?> ";
 	var src = path + sessid + "/qr.png";
-	console.log("src: "+src);
 	var htmlmodal = 
     '<h3>' + course + '</h3>' +
     '<div id="modaltitle" class="classborders"><h5 class="hideme">Optional Title</h5>'+
