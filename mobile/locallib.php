@@ -116,7 +116,7 @@ function attendance_json_error($message, $values = null)
 function attendance_create_qr_image($qrstring,$attendanceid,$sessid)
 {
 	global $CFG;
-	require_once ($CFG->dirroot . '/mod/emarking/lib/phpqrcode/phpqrcode.php');
+	require_once ($CFG->dirroot . '/mod/attendance/phpqrcode/phpqrcode.php');
 
 	$path= $CFG -> dataroot. "/temp/attendance/" . $attendanceid;
 	if (!file_exists($path)) {
