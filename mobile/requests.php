@@ -97,7 +97,9 @@ switch ($action) {
 				$output [] = $obj;
 			}
 		}
-		
+		if (! $output) {
+			echo attendance_json_error("No Sessions available");
+		}
 		echo attendance_json_array($output);
 		
 		break;
