@@ -75,13 +75,13 @@ switch ($action) {
 								( SELECT takensessions FROM (
 									SELECT sess.id AS takensessions FROM mdl_attendance_log  AS log
 									INNER JOIN mdl_user AS users ON ( users.id = log.studentid AND users.id = ?)
-									INNER JOIN mdl_attendance_sessions AS sess ON (sess.id = log.sessionid AND FROM_UNIXTIME(sess.sessdate) >= ?)
+									INNER JOIN mdl_attendance_sessions AS sess ON (sess.id = log.sessionid)
 									INNER JOIN mdl_attendance AS att ON (att.id= sess.attendanceid )
 									INNER JOIN mdl_course AS course ON ( course.id = att.course ) ) AS taken)
+							AND FROM_UNIXTIME(sess.sessdate) >= ?
 							GROUP BY sess.sessdate
 							ORDER BY FROM_UNIXTIME(sess.sessdate) ASC
 				";
-		//missing DateADD in case you want to take attendance within a margin of time
 		
 		$sessions = $DB->get_recordset_sql ( $sqlgetsessions, array (
 				$user->id,
