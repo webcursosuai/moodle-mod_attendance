@@ -381,7 +381,7 @@ function attendance_pluginfile($course, $cm, $context, $filearea, $args, $forced
     }
 
     // Session area is served by pluginfile.php.
-    $fileareas = array('session');
+    $fileareas = array('session', 'qr');
     if (!in_array($filearea, $fileareas)) {
         return false;
     }

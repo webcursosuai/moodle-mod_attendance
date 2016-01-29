@@ -27,6 +27,8 @@ defined('MOODLE_INTERNAL') || die();
 global $CFG;
 require_once($CFG->libdir . '/gradelib.php');
 require_once(dirname(__FILE__).'/renderhelpers.php');
+require_once('mobile/locallib.php');
+
 
 define('ATT_VIEW_DAYS', 1);
 define('ATT_VIEW_WEEKS', 2);
@@ -719,8 +721,8 @@ class attendance {
     }
 
     public function add_sessions($sessions) {
-        global $DB;
-
+        global $DB, $CFG, $USER; 
+        
         foreach ($sessions as $sess) {
             $sess->attendanceid = $this->id;
 
@@ -747,7 +749,73 @@ class attendance {
             $sess->studentscanmark = 0;
             $event->add_record_snapshot('attendance_sessions', $sess);
             $event->trigger();
+            
+            //Code that creates a qr image
+      //      var_dump($sess->attendanceid);
+            $url = $CFG ->wwwroot;
+            list($path, $filename) = attendance_create_qr_image($url."*".$sess->id."*".$this->cm->id,$sess->attendanceid,$sess->id);
+            
+            $this->attendance_submit($sess, $this->context, $path, $filename);
         }
+    }
+    
+    /**
+     * Copies a file and puts it in the qr file area
+     * 
+     * An example URL is
+     * 
+     * $CFG->wwwroot . "/pluginfile.php/1712/mod_attendance/qr/24/qr.png"
+     * $CFG->wwwroot . "/pluginfile.php/$cm->id/mod_attendance/qr/$session->id/qr.png"
+     * 
+     * @param unknown $session
+     * @param unknown $context
+     * @param unknown $path
+     * @param unknown $filename
+     * @throws Exception
+     * @return boolean
+     */
+    public function attendance_submit($session, $context, $path, $filename)
+    {
+    	global $DB, $USER, $CFG;
+    	
+    	$filenameparts = explode(".", $filename);
+    
+    	// Verify that both image files (anonymous and original) exist
+    	if (! file_exists($path . "/" . $filename)) {
+    		throw new Exception("Invalid path and/or filename $path $filename");
+    	}
+    
+    	// Filesystem
+    	$fs = get_file_storage();
+    	
+    	$userid =  $USER->id;
+    	$author =  $USER->firstname . ' ' . $USER->lastname;
+    
+    	// Copy file from temp folder to Moodle's filesystem
+    	$file_record = array(
+    			'contextid' => $context->id,
+    			'component' => 'mod_attendance',
+    			'filearea' => 'qr',
+    			'itemid' => $session->id,
+    			'filepath' => '/',
+    			'filename' => $filename,
+    			'timecreated' => time(),
+    			'timemodified' => time(),
+    			'userid' => $userid,
+    			'author' => $author,
+    			'license' => 'allrightsreserved'
+    	);
+    
+    	// If the file already exists we delete it
+    	if ($fs->file_exists($context->id, 'mod_attendance', 'qr', $session->id, '/', $filename)) {
+    		$previousfile = $fs->get_file($context->id, 'mod_attendance', 'qr', $session->id, '/', $filename);
+    		$previousfile->delete();
+    	}
+    
+    	// Info for the new file
+    	$fileinfo = $fs->create_file_from_pathname($file_record, $path . '/' . $filename);
+    
+    	return true;
     }
 
     public function update_session_from_form_data($formdata, $sessionid) {
