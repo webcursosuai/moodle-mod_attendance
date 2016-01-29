@@ -155,7 +155,7 @@ $( ".clickeable" ).click(function() {
     '<img class="loadimage" src="'+src+'" style="width:300px; height:300px;"></div><br></div>'+
     '<div id="modalmessage" class="classborders"><h5 class="hideme">Optional Message</h5>'+
     '<div id="inputmessage"><input type="text" class="form-control" placeholder="Enter a message for your print"></div></div>'+
-    '<img src="../pix/logo.gif">';
+    '<img src="pix/logo.gif">';
     $('#insertbody').html(htmlmodal);
     $('.loaderimage').show();
     $('.loadimage').on('load', function(){
