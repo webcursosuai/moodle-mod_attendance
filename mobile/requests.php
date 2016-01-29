@@ -97,9 +97,6 @@ switch ($action) {
 				$output [] = $obj;
 			}
 		}
-		if(!isset($output)){
-			$output= "Invalid parameters for encoding json. output is null.";
-		}
 		
 		echo attendance_json_array($output);
 		
