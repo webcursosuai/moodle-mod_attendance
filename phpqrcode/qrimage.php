@@ -68,8 +68,8 @@
             $h = count($frame);
             $w = strlen($frame[0]);
             
-            $imgW = ($w + 2*$outerFrame)*2;
-            $imgH = ($h + 2*$outerFrame)*2;
+            $imgW = $w + 2*$outerFrame;
+            $imgH = $h + 2*$outerFrame;
             
             $base_image =ImageCreate($imgW, $imgH);
             
