@@ -97,7 +97,7 @@ switch ($action) {
 				$output [] = $obj;
 			}
 		}
-		if(is_null($output)){
+		if(!isset($output)){
 			$output= "Invalid parameters for encoding json. output is null.";
 		}
 		
