@@ -753,7 +753,7 @@ class attendance {
             //Code that creates a qr image
             //var_dump($this->context->instanceid);
             $url = $CFG ->wwwroot;
-            list($path, $filename) = attendance_create_qr_image($url."*".$sess->id."*".$sess->attendanceid,$sess->attendanceid,$sess->id);
+            list($path, $filename) = attendance_create_qr_image($url."*".$sess->attendanceid,$sess->attendanceid,$sess->id);
             
             $this->attendance_submit($sess, $this->context, $path, $filename);
         }
